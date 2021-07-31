@@ -1,4 +1,4 @@
-<header>
+<header id="#top">
   <app-navigation-bar></app-navigation-bar>
 </header>
 
@@ -7,14 +7,18 @@
 </div>
 
 <footer class="mt-auto">
-  <hr />
-  <div class="container">
+  <div class="container-fluid border-top">
     <div class="row">
-      <div class="col-sm">
-        <a href="https://peterrhodes.dev" target="_blank">Peter Rhodes Dev</a>
+      <div class="col">
+        <a routerLink="home">Home</a>
       </div>
-      <div class="col-sm">
-        <a href="https://github.com/peterrhodesdev/angular-starter" target="_blank"><fa-icon [icon]="faGithub"></fa-icon>&nbsp;Check out the GitHub repo</a>
+    </div>
+    <div class="row bg-dark">
+      <div class="col">
+        <a class="text-light" href="https://peterrhodes.dev" target="_blank">Peter Rhodes Dev</a>
+      </div>
+      <div class="col-auto">
+        <a class="text-light d-flex align-items-end" href="https://github.com/peterrhodesdev/angular-starter" target="_blank"><fa-icon [icon]="faGithub"></fa-icon>&nbsp;Check out the GitHub repo</a>
       </div>
     </div>
   </div>
