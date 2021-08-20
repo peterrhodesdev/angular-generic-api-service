@@ -1,27 +1,67 @@
-# AngularStarter
+# Angular Starter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+Angular starter project with routing and SCSS that uses the following packages: [angular-fontawesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome) and [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap).
 
-## Development server
+Check out [this blog post](https://peterrhodes.dev/blog/post/angular-getting-started) for more details.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Get the code
 
-## Code scaffolding
+Use one of the methods given below to get the project source code on your local machine.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Clone
 
-## Build
+SSH:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+git clone git@github.com:peterrhodesdev/angular-starter.git
+```
 
-## Running unit tests
+HTTPS:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone https://github.com/peterrhodesdev/angular-starter.git
+```
 
-## Running end-to-end tests
+GitHub CLI:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+gh repo clone peterrhodesdev/angular-starter
+```
 
-## Further help
+### Fork and clone
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+gh repo fork peterrhodesdev/angular-starter --clone=true
+```
+
+### Add a remote + pull
+
+```bash
+mkdir angular-starter
+cd angular-starter
+git init
+git remote add angular-starter git@github.com:peterrhodesdev/angular-starter.git
+git pull angular-starter main
+```
+
+## Install dependencies
+
+In the project root directory run
+
+```bash
+npm install
+```
+
+## Run
+
+Start up a development server by running the following command in the project root directory
+
+```bash
+ng serve
+```
+
+Once the project has compiled successfully, open a web browser and navigate to `http://localhost:4200/`.
+
+> These two steps can be combined by running `ng serve -o`, which will open the app automatically in your default browser.
+
+To stop the app, go back to the terminal window and press `ctrl + C`.
