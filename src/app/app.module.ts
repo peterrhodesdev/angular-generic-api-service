@@ -12,6 +12,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { UserComponent } from './components/user/user.component';
 import { PostComponent } from './components/post/post.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CommentComponent } from './components/comment/comment.component';
     NavigationBarComponent,
     UserComponent,
     PostComponent,
-    CommentComponent
+    CommentComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

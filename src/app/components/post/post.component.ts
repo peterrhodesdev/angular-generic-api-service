@@ -10,9 +10,11 @@ import { PostModel } from 'src/app/models/post.model';
 export class PostComponent implements OnInit {
 
   public posts: PostModel[];
+  public isLoading: boolean;
 
   constructor(private postService: PostService) {
     this.posts = [];
+    this.isLoading = false;
   }
 
   ngOnInit(): void {
@@ -20,6 +22,8 @@ export class PostComponent implements OnInit {
   }
 
   private getPosts(): void {
+    this.isLoading = true;
+
     this.postService
     .getMany()
     .subscribe(
@@ -28,6 +32,9 @@ export class PostComponent implements OnInit {
       },
       error => {
         alert("Error getting posts");
-      });
+      })
+    .add(() => {
+      this.isLoading = false;
+    });
   }
 }
