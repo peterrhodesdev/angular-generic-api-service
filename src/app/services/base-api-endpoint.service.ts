@@ -1,28 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BaseApiEndpointService<T extends BaseApiEndpointModel> {
+export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel> {
 
-  private baseUrl: string;
-  private endpoint: string;
+  constructor(private apiService: ApiService) { }
 
-  constructor(
-    private apiService: ApiService,
-    baseUrl: string,
-    endpoint: string
-  ) {
-    this.baseUrl = baseUrl;
-    this.endpoint = endpoint;
-  }
+  public abstract getBaseUrl(): string;
+  public abstract getEndpoint(): string;
 
   private requestUrl(): string {
-    return `${this.baseUrl}/${this.endpoint}`;
+    return `${this.getBaseUrl()}${this.getEndpoint()}`;
   }
 
-  public getMany(url: string): Observable<T[]> {
-    return this.apiService.get<T[]>(this.requestUrl());
+  public getMany(): Observable<T[]> {
+    return this.apiService.getMany<T>(this.requestUrl());
   }
 }
