@@ -9,13 +9,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { UserComponent } from './components/user/user.component';
+import { PostComponent } from './components/post/post.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    UserComponent,
+    PostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
