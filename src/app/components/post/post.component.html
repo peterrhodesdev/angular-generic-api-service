@@ -13,7 +13,7 @@
   <tr *ngFor="let post of posts">
     <th scope="row">{{ post.id }}</th>
     <td>{{ post.userId }}</td>
-    <td>{{ post.title }}</td>
+    <td>{{ post.getUpperCaseTitle() }}</td>
     <td>{{ post.body }}</td>
   </tr>
   </tbody>

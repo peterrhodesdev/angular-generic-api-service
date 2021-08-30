@@ -1,7 +1,11 @@
 import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
 
-export interface PostModel extends BaseApiEndpointModel {
-  userId: number;
-  title: string;
-  body: string;
+export class PostModel extends BaseApiEndpointModel {
+  userId: number = 0;
+  title: string = "";
+  body: string = "";
+
+  public getUpperCaseTitle(): string {
+    return this.title.toUpperCase();
+  }
 }

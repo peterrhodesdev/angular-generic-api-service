@@ -15,4 +15,8 @@ export class PostService extends BaseApiEndpointService<PostModel> {
   public getEndpoint(): string {
     return environment.API_ENDPOINT_JSON_PLACEHOLDER_POSTS;
   }
+
+  public getInstance(): PostModel {
+    return new PostModel();
+  }
 }
