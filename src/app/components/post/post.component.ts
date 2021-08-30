@@ -24,7 +24,6 @@ export class PostComponent implements OnInit {
     .getMany()
     .subscribe(
       data => {
-        console.log("Posts = ", data);
         this.posts = [...data];
       },
       error => {
