@@ -12,9 +12,9 @@ export class ApiService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getMany<T>(url: string): Observable<T[]> {
-    return this.http.get<T[]>(this.url, this.httpOptions);
+    return this.httpClient.get<T[]>(this.url, this.httpOptions);
   }
 }
