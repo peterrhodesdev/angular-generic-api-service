@@ -1,8 +1,6 @@
-# Angular Starter
+# Angular generic API service
 
-Angular starter project with routing and SCSS that uses the following packages: [angular-fontawesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome) and [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap).
-
-Check out [this blog post](https://peterrhodes.dev/blog/post/angular-getting-started) for more details.
+TODO
 
 ## Get the code
 
@@ -13,35 +11,35 @@ Use one of the methods given below to get the project source code on your local 
 SSH:
 
 ```bash
-git clone git@github.com:peterrhodesdev/angular-starter.git
+git clone git@github.com:peterrhodesdev/angular-generic-api-service.git
 ```
 
 HTTPS:
 
 ```bash
-git clone https://github.com/peterrhodesdev/angular-starter.git
+git clone https://github.com/peterrhodesdev/angular-generic-api-service.git
 ```
 
 GitHub CLI:
 
 ```bash
-gh repo clone peterrhodesdev/angular-starter
+gh repo clone peterrhodesdev/angular-generic-api-service
 ```
 
 ### Fork and clone
 
 ```bash
-gh repo fork peterrhodesdev/angular-starter --clone=true
+gh repo fork peterrhodesdev/angular-generic-api-service --clone=true
 ```
 
 ### Add a remote + pull
 
 ```bash
-mkdir angular-starter
-cd angular-starter
+mkdir angular-generic-api-service
+cd angular-generic-api-service
 git init
-git remote add angular-starter git@github.com:peterrhodesdev/angular-starter.git
-git pull angular-starter main
+git remote add angular-generic-api-service git@github.com:peterrhodesdev/angular-generic-api-service.git
+git pull angular-generic-api-service main
 ```
 
 ## Install dependencies
