@@ -1,4 +1,4 @@
-import { ValidationHelper } from './validation-helper';
+import { ValidationHelper } from './validation.helper';
 
 describe('ValidationHelper', () => {
   it('#isNull should return true for null variable', () => {
@@ -101,5 +101,27 @@ describe('ValidationHelper', () => {
     expect(spaceStringResult).toBeFalsy();
     expect(singleCharacterStringResult).toBeFalsy();
     expect(multipleCharacterStringResult).toBeFalsy();
+  });
+
+  it('#isArrayEmpty should return true for empty array', () => {
+    // Arrange
+    let emptyArray: any[] = [];
+
+    // Act
+    let result = ValidationHelper.isArrayEmpty(emptyArray);
+
+    // Assert
+    expect(result).toBeTruthy();
+  });
+
+  it('#isArrayEmpty should return false for non-empty array', () => {
+    // Arrange
+    let nonEmptyArray: any[] = [ {} ];
+
+    // Act
+    let result = ValidationHelper.isArrayEmpty(nonEmptyArray);
+
+    // Assert
+    expect(result).toBeFalsy();
   });
 });
