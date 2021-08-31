@@ -10,8 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { UserComponent } from './components/user/user.component';
 import { TodosComponent } from './components/todos/todos.component';
+import { UsersComponent } from './components/users/users.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     HomeComponent,
     NotFoundComponent,
     NavigationBarComponent,
-    UserComponent,
+    UsersComponent,
     TodosComponent,
     LoadingSpinnerComponent
   ],
