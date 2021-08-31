@@ -124,4 +124,35 @@ describe('ValidationHelper', () => {
     // Assert
     expect(result).toBeFalsy();
   });
+
+  it('#isString should return false for non-strings', () => {
+    // Arrange
+    let num: number = 0;
+    let bool: boolean = false;
+    let arr: string[] = [];
+    let obj: any = {};
+
+    // Act
+    let numResult = ValidationHelper.isString(num);
+    let boolResult = ValidationHelper.isString(bool);
+    let arrResult = ValidationHelper.isString(arr);
+    let objResult = ValidationHelper.isString(obj);
+
+    // Assert
+    expect(numResult).toBeFalsy();
+    expect(boolResult).toBeFalsy();
+    expect(arrResult).toBeFalsy();
+    expect(objResult).toBeFalsy();
+  });
+
+  it('#isString should return true for string', () => {
+    // Arrange
+    let str: string = '';
+
+    // Act
+    let result = ValidationHelper.isString(str);
+
+    // Assert
+    expect(result).toBeTruthy();
+  });
 });

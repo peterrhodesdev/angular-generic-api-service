@@ -10,17 +10,17 @@ import { UrlHelper } from 'src/app/helpers/url.helper';
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel> {
+export abstract class BaseApiEndpointService<ID extends number | string, T extends BaseApiEndpointModel<ID>> {
 
   constructor(private apiService: ApiService) { }
+
+  /* abstract methods */
 
   public abstract getBaseUrl(): string;
   public abstract getEndpoint(): string;
   public abstract getInstance(): T;
 
-  private endpointUrl(): string {
-    return `${this.getBaseUrl()}${this.getEndpoint()}`;
-  }
+  /* GET (read) */
 
   public getMany(params: QueryParameter[] = []): Observable<T[]> {
     let queryString: string = UrlHelper.getValidQueryString(params);
@@ -31,5 +31,15 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel> {
         map(response => { 
           return response.map(item => plainToClassFromExist(this.getInstance(), item));
         }));
+  }
+
+  public getOne(id: ID): T {
+    throw Error("Not implemented");
+  }
+
+  /* private methods */
+
+  private endpointUrl(): string {
+    return `${this.getBaseUrl()}${this.getEndpoint()}`;
   }
 }

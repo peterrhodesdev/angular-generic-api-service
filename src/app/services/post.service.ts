@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PostService extends BaseApiEndpointService<PostModel> {
+export class PostService extends BaseApiEndpointService<number, PostModel> {
 
   public getBaseUrl(): string {
     return environment.API_BASE_URL_JSON_PLACEHOLDER;

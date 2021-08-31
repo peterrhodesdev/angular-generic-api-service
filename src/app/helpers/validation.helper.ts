@@ -29,4 +29,8 @@ export abstract class ValidationHelper {
   public static hasElements<T>(t?: T[]): boolean {
     return !ValidationHelper.isNullOrUndefined(t) && !ValidationHelper.isArrayEmpty(t!);
   }
+
+  public static isString<T>(t: T): boolean {
+    return typeof t === 'string' || t instanceof String;
+  }
 }
