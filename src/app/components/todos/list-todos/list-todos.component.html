@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row align-items-end">
-    <div class="col-3">
+    <div class="col-4">
       <button (click)="onGetAllClick()" class="btn btn-primary" id="getAllButton">Get all</button>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <label for="userid">Get todos filtered by user ID:</label>
-      <input type="text" class="form-control" id="userid" [(ngModel)]="userIdFilter">
+      <input type="number" class="form-control" id="userid" [(ngModel)]="userIdFilter">
       <button (click)="onGetFilteredClick()" class="btn btn-secondary">Get filtered</button>
     </div>
   </div>
@@ -24,17 +24,17 @@
   </tr>
   </thead>
   <tbody>
-  <div *ngIf="isLoading">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
-  <tr *ngFor="let todo of todos">
-    <th scope="row">{{ todo.id }}</th>
-    <td>{{ todo.userId }}</td>
-    <td>{{ todo.title }}</td>
-    <td>{{ todo.completed }}</td>
-    <td><button (click)="onDeleteTodoClick(todo.id!)" class="btn btn-danger">Delete</button></td>
-    <td><button (click)="onEditTodoClick(todo.id!)" class="btn btn-warning">Edit</button></td>
-    <td><button (click)="onViewTodoClick(todo.id!)" class="btn btn-info">View</button></td>
-  </tr>
+    <tr *ngIf="isLoading; else showtodos"><td colspan="7"><app-loading-spinner></app-loading-spinner></td></tr>
+    <ng-template #showtodos>
+      <tr *ngFor="let todo of todos">
+        <th scope="row">{{ todo.id }}</th>
+        <td>{{ todo.userId }}</td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.completed }}</td>
+        <td><button (click)="onDeleteTodoClick(todo.id!)" class="btn btn-danger">Delete</button></td>
+        <td><button (click)="onEditTodoClick(todo.id!)" class="btn btn-warning">Edit</button></td>
+        <td><button (click)="onViewTodoClick(todo.id!)" class="btn btn-info">View</button></td>
+      </tr>
+    </ng-template>
   </tbody>
 </table>

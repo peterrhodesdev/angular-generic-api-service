@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row align-items-end">
+    <div class="col-4">
+      <label for="todoid">View todo for ID:</label>
+      <input type="number" class="form-control" id="todoid" [(ngModel)]="viewTodoId">
+      <button (click)="onViewTodoClick()" class="btn btn-primary">Get</button>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<app-loading-spinner *ngIf="isLoading; else showview"></app-loading-spinner>
+<ng-template #showview>
+  <div *ngIf="!canViewTodo(); else displaytodo">Request a todo to view its contents</div>
+  <ng-template #displaytodo>
+    <h2>Todo</h2>
+    <p>Todo id = {{ todo!.id! }} and userId = {{ todo!.userId }}.</p>
+    <h3>Title</h3>
+    <p><b>{{ todo!.title }}</b></p>
+    <hr/>
+    <p>This todo has {{ todo!.completed ? '' : 'not ' }} been completed.</p>
+  </ng-template>
+</ng-template>

@@ -10,8 +10,10 @@ import { TodoModel } from 'src/app/models/todo.model';
 export class TodosComponent {
 
   public todos: TodoModel[];
-  public isLoading: boolean;
+  public isPerformingRequest: boolean;
   public activeNavItem: number;
+  public viewTodo?: TodoModel;
+
   public readonly listTodosNavItemId: number = 1;
   public readonly viewTodoNavItemId: number = 2;
   public readonly addNewNavItemId: number = 3;
@@ -19,14 +21,15 @@ export class TodosComponent {
 
   constructor(private todoService: TodoService) {
     this.todos = [];
-    this.isLoading = false;
+    this.isPerformingRequest = false;
     this.activeNavItem = this.listTodosNavItemId;
+    this.viewTodo = undefined;
   }
 
   /* Delete */
 
   public onDeleteTodoEvent(id: number) {
-    /*this.isLoading = true;
+    /*this.isPerformingRequest = true;
 
     this.todoService
       .delete(id)
@@ -39,7 +42,7 @@ export class TodosComponent {
           alert(`Error deleting todo with id = ${id}`);
         })
       .add(() => {
-        this.isLoading = false;
+        this.isPerformingRequest = false;
       });*/
   }
 
@@ -52,7 +55,7 @@ export class TodosComponent {
   /* Get all */
 
   public onGetAllEvent(): void {
-    this.isLoading = true;
+    this.isPerformingRequest = true;
     this.todos = [];
 
     this.todoService
@@ -65,14 +68,14 @@ export class TodosComponent {
           alert(`Error getting todos: ${error}`);
         })
       .add(() => {
-        this.isLoading = false;
+        this.isPerformingRequest = false;
       });
   }
 
   /* Get filtered */
 
   public onGetFilteredEvent(userId: number) {
-    this.isLoading = true;
+    this.isPerformingRequest = true;
     this.todos = [];
 
     this.todoService
@@ -85,14 +88,29 @@ export class TodosComponent {
           alert(`Error getting todos for user ${userId}: ${error}`);
         })
       .add(() => {
-        this.isLoading = false;
+        this.isPerformingRequest = false;
       });
   }
 
   /* View */
 
   public onViewTodoEvent(id: number) {
+    this.isPerformingRequest = true;
+    this.viewTodo = undefined;
     this.activeNavItem = this.viewTodoNavItemId;
+
+    this.todoService
+      .getOne(id)
+      .subscribe(
+        data => {
+          this.viewTodo = data;
+        },
+        error => {
+          alert(`Error getting todo with id ${id}: ${error}`);
+        })
+      .add(() => {
+        this.isPerformingRequest = false;
+      });
     //
   }
 }

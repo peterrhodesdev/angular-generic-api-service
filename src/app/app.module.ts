@@ -14,6 +14,7 @@ import { TodosComponent } from './components/todos/todos.component';
 import { UsersComponent } from './components/users/users.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListTodosComponent } from './components/todos/list-todos/list-todos.component';
+import { ViewTodoComponent } from './components/todos/view-todo/view-todo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListTodosComponent } from './components/todos/list-todos/list-todos.com
     UsersComponent,
     TodosComponent,
     LoadingSpinnerComponent,
-    ListTodosComponent
+    ListTodosComponent,
+    ViewTodoComponent
   ],
   imports: [
     BrowserModule,
