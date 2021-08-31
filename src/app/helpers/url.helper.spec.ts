@@ -94,6 +94,19 @@ describe('Url.Helper', () => {
     expect(paramsResult).toEqual('?name=value');
   });
 
+  it('#getValidQueryString should return string with escaped reserved characters', () => {
+    // Arrange
+    let params: QueryParameter[] = [
+      new QueryParameter('name', 'value with spaces'),
+    ];
+
+    // Act
+    let paramsResult = UrlHelper.getValidQueryString(params);
+
+    // Assert
+    expect(paramsResult).toEqual('?name=value%20with%20spaces');
+  });
+
   it('#getValidQueryString should return string for multiple params', () => {
     // Arrange
     let params: QueryParameter[] = [
