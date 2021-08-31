@@ -12,11 +12,15 @@ export class TodosComponent {
   public todos: TodoModel[];
   public isLoading: boolean;
   public activeNavItem: number;
+  public readonly listTodosNavItemId: number = 1;
+  public readonly viewTodoNavItemId: number = 2;
+  public readonly addNewNavItemId: number = 3;
+  public readonly editExistingNavItemId: number = 4;
 
   constructor(private todoService: TodoService) {
     this.todos = [];
     this.isLoading = false;
-    this.activeNavItem = 1;
+    this.activeNavItem = this.listTodosNavItemId;
   }
 
   /* Delete */
@@ -42,7 +46,7 @@ export class TodosComponent {
   /* Edit */
 
   public onEditTodoEvent(id: number) {
-    this.activeNavItem = 4;
+    this.activeNavItem = this.editExistingNavItemId;
   }
 
   /* Get all */
@@ -88,7 +92,7 @@ export class TodosComponent {
   /* View */
 
   public onViewTodoEvent(id: number) {
-    this.activeNavItem = 2;
+    this.activeNavItem = this.viewTodoNavItemId;
     //
   }
 }

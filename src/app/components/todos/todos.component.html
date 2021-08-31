@@ -3,7 +3,7 @@
 <p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint</p>
 
 <ul ngbNav #nav="ngbNav" [(activeId)]="activeNavItem" class="nav-tabs">
-  <li [ngbNavItem]="1">
+  <li [ngbNavItem]="listTodosNavItemId">
     <a ngbNavLink>List todos</a>
     <ng-template ngbNavContent>
       <app-list-todos
@@ -17,19 +17,19 @@
         ></app-list-todos>
     </ng-template>
   </li>
-  <li [ngbNavItem]="2">
+  <li [ngbNavItem]="viewTodoNavItemId">
     <a ngbNavLink>View todo</a>
     <ng-template ngbNavContent>
       view one todo
     </ng-template>
   </li>
-  <li [ngbNavItem]="3">
+  <li [ngbNavItem]="addNewNavItemId">
     <a ngbNavLink>Add new</a>
     <ng-template ngbNavContent>
       add new todo
     </ng-template>
   </li>
-  <li [ngbNavItem]="4">
+  <li [ngbNavItem]="editExistingNavItemId">
     <a ngbNavLink>Edit existing</a>
     <ng-template ngbNavContent>
       edit existing todo
