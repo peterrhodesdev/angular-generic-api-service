@@ -1,4 +1,23 @@
-<h1>Post</h1>
+<h1>Posts</h1>
+
+<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/posts">Posts</a> endpoint</p>
+
+<h2>GET many</h2>
+
+<div class="container">
+  <div class="row align-items-end">
+    <div class="col-3">
+      <button (click)="onGetAllClick()" class="btn btn-primary" id="getAllButton">Get all posts</button>
+    </div>
+    <div class="col-3">
+      <label for="userid">Get posts filtered by user ID:</label>
+      <input type="text" class="form-control" id="userid" [(ngModel)]="userIdFilter">
+      <button (click)="onGetFilteredClick()" class="btn btn-secondary">Get filtered</button>
+    </div>
+  </div>
+</div>
+
+<br />
 
 <table class="table table-hover">
   <thead>

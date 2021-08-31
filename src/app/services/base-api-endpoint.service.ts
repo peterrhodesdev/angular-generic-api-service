@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
 import { plainToClassFromExist } from 'class-transformer';
+import { QueryParameter } from 'src/app/common/query-parameter';
+import { UrlHelper } from 'src/app/helpers/url.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,15 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel> {
   public abstract getEndpoint(): string;
   public abstract getInstance(): T;
 
-  private requestUrl(): string {
+  private endpointUrl(): string {
     return `${this.getBaseUrl()}${this.getEndpoint()}`;
   }
 
-  public getMany(): Observable<T[]> {
-    return this.apiService.getMany<T>(this.requestUrl())
+  public getMany(params: QueryParameter[] = []): Observable<T[]> {
+    let queryString: string = UrlHelper.getValidQueryString(params);
+    let requestUrl: string = this.endpointUrl() + queryString;
+
+    return this.apiService.getMany<T>(requestUrl)
       .pipe(
         map(response => { 
           return response.map(item => plainToClassFromExist(this.getInstance(), item));
