@@ -33,8 +33,14 @@ export abstract class BaseApiEndpointService<ID extends number | string, T exten
         }));
   }
 
-  public getOne(id: ID): T {
-    throw Error("Not implemented");
+  public getOne(id: ID): Observable<T> {
+    let requestUrl: string = `${this.endpointUrl()}${id}`;
+
+    return this.apiService.getOne<T>(requestUrl)
+      .pipe(
+        map(response => { 
+          return plainToClassFromExist(this.getInstance(), response);
+        }));
   }
 
   /* private methods */
