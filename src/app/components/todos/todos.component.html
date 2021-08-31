@@ -1,6 +1,28 @@
 <h1>Todos</h1>
 
-<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint</p>
+<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint.</p>
+
+<p><i>Note: because this is only a mock server the resources won't actually be modified, just faked as if they were.</i></p>
+
+<ul>
+  <li>
+    List todos:
+    <ul>
+      <li>Get all: perform a HTTP GET request to read all the todos</li>
+      <li>Get filtered: perform a HTTP GET request with a query parameter to read all the todos filtered by user ID</li>
+      <li>Delete: perform a HTTP DELETE request to delete a todo by ID</li>
+    </ul>
+  </li>
+  <li>View todo: perform a HTTP GET request to read a single todo by ID</li>
+  <li>Add new: perform a HTTP POST request to create a new todo</li>
+  <li>
+    Edit existing:
+    <ul>
+      <li>Update full: perform a HTTP PUT request to replace the original todo object</li>
+      <li>Update partial: perform a HTTP PATCH request to modify a todo object</li>
+    </ul>
+  </li>
+</ul>
 
 <ul ngbNav #nav="ngbNav" [(activeId)]="activeNavItem" class="nav-tabs">
   <li [ngbNavItem]="listTodosNavItemId">
