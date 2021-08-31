@@ -34,7 +34,7 @@ export class TodosComponent {
         this.todos = [...data];
       },
       error => {
-        alert("Error getting todos");
+        alert(`Error getting todos: ${error}`);
       })
     .add(() => {
       this.isLoading = false;
@@ -56,7 +56,7 @@ export class TodosComponent {
         this.todos = [...data];
       },
       error => {
-        alert(`Error getting todos for user ${userId}`);
+        alert(`Error getting todos for user ${userId}: ${error}`);
       })
     .add(() => {
       this.isLoading = false;
