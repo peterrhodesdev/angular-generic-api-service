@@ -11,10 +11,12 @@ export class TodosComponent {
 
   public todos: TodoModel[];
   public isLoading: boolean;
+  public activeNavItem: number;
 
   constructor(private todoService: TodoService) {
     this.todos = [];
     this.isLoading = false;
+    this.activeNavItem = 1;
   }
 
   /* Get all */

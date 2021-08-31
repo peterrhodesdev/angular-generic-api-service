@@ -2,23 +2,19 @@
 
 <p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint</p>
 
-<h2>GET many</h2>
-
-<app-list-todos
-  [todos]=todos
-  [isLoading]=isLoading
-  (deletedTodoWithId)=onDeleteTodoEvent($event)
-  (getAll)=onGetAllEvent()
-  (getFilteredWithUserId)=onGetFilteredEvent($event)
-  ></app-list-todos>
-
-<!--
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" [(activeId)]="activeNavItem" class="nav-tabs">
   <li [ngbNavItem]="1">
     <a ngbNavLink>List todos</a>
     <ng-template ngbNavContent>
-      <app-list-todos>
+      <app-list-todos
+        [todos]=todos
+        [isLoading]=isLoading
+        (deletedTodoWithId)=onDeleteTodoEvent($event)
+        (getAll)=onGetAllEvent()
+        (getFilteredWithUserId)=onGetFilteredEvent($event)
+        ></app-list-todos>
     </ng-template>
   </li>
 </ul>
--->
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

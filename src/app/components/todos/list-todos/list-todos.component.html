@@ -20,6 +20,7 @@
     <th scope="col">User ID</th>
     <th scope="col">Title</th>
     <th scope="col">Completed</th>
+    <th scope="col">Delete</th>
   </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
     <td>{{ todo.userId }}</td>
     <td>{{ todo.title }}</td>
     <td>{{ todo.completed }}</td>
+    <td><button (click)="onDeleteTodoClick(todo.id!)" class="btn btn-danger">Delete</button></td>
   </tr>
   </tbody>
 </table>
