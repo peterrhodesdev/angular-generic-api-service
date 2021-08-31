@@ -11,8 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { UserComponent } from './components/user/user.component';
-import { PostComponent } from './components/post/post.component';
-import { CommentComponent } from './components/comment/comment.component';
+import { TodosComponent } from './components/todos/todos.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
@@ -22,8 +21,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     NotFoundComponent,
     NavigationBarComponent,
     UserComponent,
-    PostComponent,
-    CommentComponent,
+    TodosComponent,
     LoadingSpinnerComponent
   ],
   imports: [

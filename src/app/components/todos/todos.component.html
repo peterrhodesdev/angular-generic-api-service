@@ -1,16 +1,16 @@
-<h1>Posts</h1>
+<h1>Todos</h1>
 
-<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/posts">Posts</a> endpoint</p>
+<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint</p>
 
 <h2>GET many</h2>
 
 <div class="container">
   <div class="row align-items-end">
     <div class="col-3">
-      <button (click)="onGetAllClick()" class="btn btn-primary" id="getAllButton">Get all posts</button>
+      <button (click)="onGetAllClick()" class="btn btn-primary" id="getAllButton">Get all todos</button>
     </div>
     <div class="col-3">
-      <label for="userid">Get posts filtered by user ID:</label>
+      <label for="userid">Get todos filtered by user ID:</label>
       <input type="text" class="form-control" id="userid" [(ngModel)]="userIdFilter">
       <button (click)="onGetFilteredClick()" class="btn btn-secondary">Get filtered</button>
     </div>
@@ -25,18 +25,18 @@
     <th scope="col">ID</th>
     <th scope="col">User ID</th>
     <th scope="col">Title</th>
-    <th scope="col">Body</th>
+    <th scope="col">Completed</th>
   </tr>
   </thead>
   <tbody>
   <div *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <tr *ngFor="let post of posts">
-    <th scope="row">{{ post.id }}</th>
-    <td>{{ post.userId }}</td>
-    <td>{{ post.getUpperCaseTitle() }}</td>
-    <td>{{ post.body }}</td>
+  <tr *ngFor="let todo of todos">
+    <th scope="row">{{ todo.id }}</th>
+    <td>{{ todo.userId }}</td>
+    <td>{{ todo.title }}</td>
+    <td>{{ todo.completed }}</td>
   </tr>
   </tbody>
 </table>
