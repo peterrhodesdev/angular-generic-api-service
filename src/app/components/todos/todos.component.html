@@ -10,9 +10,29 @@
         [todos]=todos
         [isLoading]=isLoading
         (deletedTodoWithId)=onDeleteTodoEvent($event)
+        (editTodoWithId)=onEditTodoEvent($event)
         (getAll)=onGetAllEvent()
         (getFilteredWithUserId)=onGetFilteredEvent($event)
+        (viewTodoWithId)=onViewTodoEvent($event)
         ></app-list-todos>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>View todo</a>
+    <ng-template ngbNavContent>
+      view one todo
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Add new</a>
+    <ng-template ngbNavContent>
+      add new todo
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>Edit existing</a>
+    <ng-template ngbNavContent>
+      edit existing todo
     </ng-template>
   </li>
 </ul>

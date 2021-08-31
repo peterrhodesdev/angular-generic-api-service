@@ -19,6 +19,32 @@ export class TodosComponent {
     this.activeNavItem = 1;
   }
 
+  /* Delete */
+
+  public onDeleteTodoEvent(id: number) {
+    /*this.isLoading = true;
+
+    this.todoService
+      .delete(id)
+      .subscribe(
+        data => {
+          this.todos = this.todos.filter(todo => todo.id !== id);
+          alert(`Successfully deleted todo with id = ${id}`);
+        },
+        error => {
+          alert(`Error deleting todo with id = ${id}`);
+        })
+      .add(() => {
+        this.isLoading = false;
+      });*/
+  }
+
+  /* Edit */
+
+  public onEditTodoEvent(id: number) {
+    this.activeNavItem = 4;
+  }
+
   /* Get all */
 
   public onGetAllEvent(): void {
@@ -59,23 +85,10 @@ export class TodosComponent {
       });
   }
 
-  /* Delete */
+  /* View */
 
-  onDeleteTodoEvent(id: number) {
-    /*this.isLoading = true;
-
-    this.todoService
-      .delete(id)
-      .subscribe(
-        data => {
-          this.todos = this.todos.filter(todo => todo.id !== id);
-          alert(`Successfully deleted todo with id = ${id}`);
-        },
-        error => {
-          alert(`Error deleting todo with id = ${id}`);
-        })
-      .add(() => {
-        this.isLoading = false;
-      });*/
+  public onViewTodoEvent(id: number) {
+    this.activeNavItem = 2;
+    //
   }
 }
