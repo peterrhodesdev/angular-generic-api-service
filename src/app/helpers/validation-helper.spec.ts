@@ -4,12 +4,6 @@ describe('ValidationHelper', () => {
   it('#isNull should return true for null object', () => {
     // Arrange
     let nullObject: any = null;
-    let emptyObject: any = {};
-    let emptyString: string = "";
-    let undefinedObject: any = undefined;
-    let falseBoolean: boolean = false;
-    let zeroNumber: number = 0;
-    let nanNumber: number = NaN;
 
     // Act
     let result = ValidationHelper.isNull(nullObject);
