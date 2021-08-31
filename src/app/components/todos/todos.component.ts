@@ -11,55 +11,69 @@ export class TodosComponent {
 
   public todos: TodoModel[];
   public isLoading: boolean;
-  public userIdFilter: number;
 
   constructor(private todoService: TodoService) {
     this.todos = [];
     this.isLoading = false;
-    this.userIdFilter = 1;
   }
 
-  public onGetAllClick() {
-    this.getAllTodos();
-  }
+  /* Get all */
 
-  private getAllTodos(): void {
+  public onGetAllEvent(): void {
     this.isLoading = true;
     this.todos = [];
 
     this.todoService
-    .getMany()
-    .subscribe(
-      data => {
-        this.todos = [...data];
-      },
-      error => {
-        alert(`Error getting todos: ${error}`);
-      })
-    .add(() => {
-      this.isLoading = false;
-    });
+      .getMany()
+      .subscribe(
+        data => {
+          this.todos = [...data];
+        },
+        error => {
+          alert(`Error getting todos: ${error}`);
+        })
+      .add(() => {
+        this.isLoading = false;
+      });
   }
 
-  public onGetFilteredClick() {
-    this.getTodosForUser(this.userIdFilter);
-  }
+  /* Get filtered */
 
-  private getTodosForUser(userId: number) {
+  public onGetFilteredEvent(userId: number) {
     this.isLoading = true;
     this.todos = [];
 
     this.todoService
-    .getManyFilterByUserId(userId)
-    .subscribe(
-      data => {
-        this.todos = [...data];
-      },
-      error => {
-        alert(`Error getting todos for user ${userId}: ${error}`);
-      })
-    .add(() => {
-      this.isLoading = false;
-    });
+      .getManyFilterByUserId(userId)
+      .subscribe(
+        data => {
+          this.todos = [...data];
+        },
+        error => {
+          alert(`Error getting todos for user ${userId}: ${error}`);
+        })
+      .add(() => {
+        this.isLoading = false;
+      });
+  }
+
+  /* Delete */
+
+  onDeleteTodoEvent(id: number) {
+    /*this.isLoading = true;
+
+    this.todoService
+      .delete(id)
+      .subscribe(
+        data => {
+          this.todos = this.todos.filter(todo => todo.id !== id);
+          alert(`Successfully deleted todo with id = ${id}`);
+        },
+        error => {
+          alert(`Error deleting todo with id = ${id}`);
+        })
+      .add(() => {
+        this.isLoading = false;
+      });*/
   }
 }

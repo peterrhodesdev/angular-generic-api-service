@@ -13,6 +13,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { TodosComponent } from './components/todos/todos.component';
 import { UsersComponent } from './components/users/users.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ListTodosComponent } from './components/todos/list-todos/list-todos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     NavigationBarComponent,
     UsersComponent,
     TodosComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ListTodosComponent
   ],
   imports: [
     BrowserModule,

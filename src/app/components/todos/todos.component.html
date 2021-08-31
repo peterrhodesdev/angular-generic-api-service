@@ -4,39 +4,21 @@
 
 <h2>GET many</h2>
 
-<div class="container">
-  <div class="row align-items-end">
-    <div class="col-3">
-      <button (click)="onGetAllClick()" class="btn btn-primary" id="getAllButton">Get all todos</button>
-    </div>
-    <div class="col-3">
-      <label for="userid">Get todos filtered by user ID:</label>
-      <input type="text" class="form-control" id="userid" [(ngModel)]="userIdFilter">
-      <button (click)="onGetFilteredClick()" class="btn btn-secondary">Get filtered</button>
-    </div>
-  </div>
-</div>
+<app-list-todos
+  [todos]=todos
+  [isLoading]=isLoading
+  (deletedTodoWithId)=onDeleteTodoEvent($event)
+  (getAll)=onGetAllEvent()
+  (getFilteredWithUserId)=onGetFilteredEvent($event)
+  ></app-list-todos>
 
-<br />
-
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">User ID</th>
-    <th scope="col">Title</th>
-    <th scope="col">Completed</th>
-  </tr>
-  </thead>
-  <tbody>
-  <div *ngIf="isLoading">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
-  <tr *ngFor="let todo of todos">
-    <th scope="row">{{ todo.id }}</th>
-    <td>{{ todo.userId }}</td>
-    <td>{{ todo.title }}</td>
-    <td>{{ todo.completed }}</td>
-  </tr>
-  </tbody>
-</table>
+<!--
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>List todos</a>
+    <ng-template ngbNavContent>
+      <app-list-todos>
+    </ng-template>
+  </li>
+</ul>
+-->
