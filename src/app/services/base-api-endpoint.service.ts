@@ -86,7 +86,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
    * @throws Error From this.getModelId
    * @throws Error From this.apiService.put
    */
-  public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> | never {
+  public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<T> | never {
     let id: ID = this.getModelId(partialT);
     return this.apiService.patch<T>(this.endpointUrlWithId(id), partialT)
       .pipe(this.pipeOperations);

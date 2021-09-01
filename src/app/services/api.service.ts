@@ -49,9 +49,9 @@ export class ApiService {
    *
    * @throws Error From this.convertObjToJsonString
    */
-  public patch<T>(url: string, partialT: Partial<T>): Observable<Partial<T>> | never {
+  public patch<T>(url: string, partialT: Partial<T>): Observable<T> | never {
     let jsonString: string = this.convertObjToJsonString(partialT);
-    let obs: Observable<Partial<T>> = this.httpClient.patch<Partial<T>>(url, jsonString, this.httpOptions);
+    let obs: Observable<T> = this.httpClient.patch<T>(url, jsonString, this.httpOptions);
     return this.applyPipeOperations(obs);
   }
 

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoModel } from 'src/app/models/todo.model';
+import { AtLeastIdAndOneField } from 'src/app/models/base-api-endpoint.model';
 import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 @Component({
@@ -20,5 +21,14 @@ export class UpdateTodoComponent {
   @Output() updateFullTodoEmitter = new EventEmitter<TodoModel>();
   public onSubmitTodoEvent() {
     this.updateFullTodoEmitter.emit(this.todo);
+  }
+
+  @Output() updatePartialTodoEmitter = new EventEmitter<AtLeastIdAndOneField<TodoModel>>();
+  public onUpdatePartialTodoClick() {
+    let partialTodo: AtLeastIdAndOneField<TodoModel> = {
+      id: this.todo.id,
+      title: this.todo.title,
+    };
+    this.updatePartialTodoEmitter.emit(partialTodo);
   }
 }

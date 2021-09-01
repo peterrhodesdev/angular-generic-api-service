@@ -12,4 +12,19 @@
 
 <h2>Update partial</h2>
 
-TODO
+<p>Only update 'title' field</p>
+
+<div class="container">
+  <div class="row">
+    <label for="partialtitle">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="partialtitle"
+      required
+      [(ngModel)]="todo.title"
+      [attr.disabled]="isLoading ? true : null">
+  </div>
+  <br>
+  <button (click)="onUpdatePartialTodoClick()" class="btn btn-success">Update partial</button>
+</div>

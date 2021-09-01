@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.service';
 import { TodoModel } from 'src/app/models/todo.model';
+import { AtLeastIdAndOneField } from 'src/app/models/base-api-endpoint.model';
 
 @Component({
   selector: 'app-todos',
@@ -120,6 +121,28 @@ export class TodosComponent {
 
     this.todoService
       .updateFull(todo)
+      .subscribe(
+        data => {
+          this.todos.forEach(todo => {
+            if (todo.id === data.id) {
+              todo = data;
+            }
+          });
+          alert(`Successfully updated todo with id = ${data.id}`);
+        },
+        error => {
+          alert(`Error updating todo: ${error}`);
+        })
+      .add(() => {
+        this.isPerformingRequest = false;
+      });
+  }
+
+  public onUpdatePartialTodoEvent(partialTodo: AtLeastIdAndOneField<TodoModel>) {
+    this.isPerformingRequest = true;
+
+    this.todoService
+      .updatePartial(partialTodo)
       .subscribe(
         data => {
           this.todos.forEach(todo => {
