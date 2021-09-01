@@ -1,1 +1,21 @@
 <h1>Users</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Email</th>
+    <th scope="col">View user info</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="isPerformingRequest; else showusers"><td colspan="3"><app-loading-spinner></app-loading-spinner></td></tr>
+    <ng-template #showusers>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{ user.id }}</th>
+        <td>{{ user.email }}</td>
+        <td><button (click)="onViewUserClick(user.id!)" class="btn btn-info">View</button></td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

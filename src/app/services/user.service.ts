@@ -18,7 +18,7 @@ export class UserService extends BaseApiEndpointService<UserModel> {
     return environment.API_ENDPOINT_JSON_PLACEHOLDER_USERS;
   }
 
-  public getInstance(): TodoModel {
+  public getInstance(): UserModel {
     return new UserModel();
   }
 }
