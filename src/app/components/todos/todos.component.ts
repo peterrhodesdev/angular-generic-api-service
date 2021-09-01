@@ -29,7 +29,7 @@ export class TodosComponent {
   /* Delete */
 
   public onDeleteTodoEvent(id: number) {
-    /*this.isPerformingRequest = true;
+    this.isPerformingRequest = true;
 
     this.todoService
       .delete(id)
@@ -43,13 +43,14 @@ export class TodosComponent {
         })
       .add(() => {
         this.isPerformingRequest = false;
-      });*/
+      });
   }
 
   /* Edit */
 
   public onEditTodoEvent(id: number) {
     this.activeNavItem = this.editExistingNavItemId;
+    // TODO
   }
 
   /* Get all */
