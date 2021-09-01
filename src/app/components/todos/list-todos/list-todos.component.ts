@@ -28,9 +28,9 @@ export class ListTodosComponent {
     this.deletedTodoWithId.emit(id);
   }
 
-  @Output() editTodoWithId = new EventEmitter<number>();
-  public onEditTodoClick(id: number) {
-    this.editTodoWithId.emit(id);
+  @Output() selectedUpdateTodoWithId = new EventEmitter<number>();
+  public onUpdateTodoClick(id: number) {
+    this.selectedUpdateTodoWithId.emit(id);
   }
 
   @Output() getAll = new EventEmitter<number>();

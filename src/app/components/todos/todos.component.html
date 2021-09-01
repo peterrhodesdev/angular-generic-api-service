@@ -15,7 +15,7 @@
         [todos]=todos
         [isLoading]=isPerformingRequest
         (deletedTodoWithId)=onDeleteTodoEvent($event)
-        (editTodoWithId)=onEditTodoEvent($event)
+        (selectedUpdateTodoWithId)=onSelectUpdateTodoEvent($event)
         (getAll)=onGetAllEvent()
         (getFilteredWithUserId)=onGetFilteredEvent($event)
         (viewTodoWithId)=onViewTodoEvent($event)
@@ -42,10 +42,10 @@
         ></app-create-todo>
     </ng-template>
   </li>
-  <li [ngbNavItem]="editExistingNavItemId">
-    <a ngbNavLink>Edit existing</a>
+  <li [ngbNavItem]="updateNavItemId">
+    <a ngbNavLink>Update existing</a>
     <ng-template ngbNavContent>
-      edit existing todo
+      update existing todo
     </ng-template>
   </li>
 </ul>

@@ -19,7 +19,7 @@ export class TodosComponent {
   public readonly listTodosNavItemId: number = 1;
   public readonly viewTodoNavItemId: number = 2;
   public readonly createNavItemId: number = 3;
-  public readonly editExistingNavItemId: number = 4;
+  public readonly updateNavItemId: number = 4;
 
   constructor(private todoService: TodoService) {
     this.todos = [];
@@ -29,7 +29,7 @@ export class TodosComponent {
     this.createTodoSuccessSubject = new Subject<void>();
   }
 
-  /* Create */
+  /* Create new todo */
 
   public onCreateTodoEvent(todo: TodoModel) {
     this.isPerformingRequest = true;
@@ -50,7 +50,7 @@ export class TodosComponent {
       });
   }
 
-  /* Delete */
+  /* Delete todo by id */
 
   public onDeleteTodoEvent(id: number) {
     this.isPerformingRequest = true;
@@ -70,14 +70,7 @@ export class TodosComponent {
       });
   }
 
-  /* Edit */
-
-  public onEditTodoEvent(id: number) {
-    this.activeNavItem = this.editExistingNavItemId;
-    // TODO
-  }
-
-  /* Get all */
+  /* Get all todos */
 
   public onGetAllEvent(): void {
     this.isPerformingRequest = true;
@@ -97,7 +90,7 @@ export class TodosComponent {
       });
   }
 
-  /* Get filtered */
+  /* Get filtered todos */
 
   public onGetFilteredEvent(userId: number) {
     this.isPerformingRequest = true;
@@ -117,7 +110,13 @@ export class TodosComponent {
       });
   }
 
-  /* View */
+  /* Update existing todo */
+
+  public onSelectUpdateTodoEvent(id: number) {
+    this.activeNavItem = this.updateNavItemId;
+  }
+
+  /* View todo */
 
   public onViewTodoEvent(id: number) {
     this.isPerformingRequest = true;

@@ -32,7 +32,7 @@
         <td>{{ todo.title }}</td>
         <td>{{ todo.completed }}</td>
         <td><button (click)="onDeleteTodoClick(todo.id!)" class="btn btn-danger">Delete</button></td>
-        <td><button (click)="onEditTodoClick(todo.id!)" class="btn btn-warning">Edit</button></td>
+        <td><button (click)="onUpdateTodoClick(todo.id!)" class="btn btn-warning">Update</button></td>
         <td><button (click)="onViewTodoClick(todo.id!)" class="btn btn-info">View</button></td>
       </tr>
     </ng-template>

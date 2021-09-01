@@ -16,6 +16,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ListTodosComponent } from './components/todos/list-todos/list-todos.component';
 import { ViewTodoComponent } from './components/todos/view-todo/view-todo.component';
 import { CreateTodoComponent } from './components/todos/create-todo/create-todo.component';
+import { UpdateTodoComponent } from './components/todos/update-todo/update-todo.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreateTodoComponent } from './components/todos/create-todo/create-todo.
     LoadingSpinnerComponent,
     ListTodosComponent,
     ViewTodoComponent,
-    CreateTodoComponent
+    CreateTodoComponent,
+    UpdateTodoComponent
   ],
   imports: [
     BrowserModule,
