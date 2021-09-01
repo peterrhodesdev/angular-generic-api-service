@@ -10,17 +10,26 @@ export class ListTodosComponent {
   
   @Input() public isLoading: boolean;
   public userIdFilter: number;
+  // Pagination variables
+  public paginationPage: number;
+  public paginationPageSize: number;
+  public todosPage: TodoModel[];
 
   @Input()
   get todos(): TodoModel[] { return this._todos; }
   set todos(todos: TodoModel[]) {
     this._todos = todos;
+    this.paginationPage = 1;
+    this.onPageChange();
   }
   private _todos: TodoModel[] = [];
 
   constructor() {
     this.isLoading = false
     this.userIdFilter = 1;
+    this.paginationPage = 1;
+    this.paginationPageSize = 10;
+    this.todosPage = [];
   }
 
   @Output() deletedTodoWithId = new EventEmitter<number>();
@@ -46,5 +55,13 @@ export class ListTodosComponent {
   @Output() viewSelectedTodoWithId = new EventEmitter<number>();
   public onViewTodoClick(id: number) {
     this.viewSelectedTodoWithId.emit(id);
+  }
+
+  /* pagination */
+
+  public onPageChange(): void {
+    let startIndex = (this.paginationPage - 1) * this.paginationPageSize;
+    let endIndex = startIndex + this.paginationPageSize;
+    this.todosPage = this.todos.slice(startIndex, endIndex);
   }
 }
