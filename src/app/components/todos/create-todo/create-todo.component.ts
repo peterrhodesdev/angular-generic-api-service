@@ -36,7 +36,7 @@ export class CreateTodoComponent implements OnInit {
   }
 
   @Output() createTodoEmitter = new EventEmitter<TodoModel>();
-  public onSubmitTodoEvent(todo: TodoModel) {
-    this.createTodoEmitter.emit(todo);
+  public onSubmitTodoEvent() {
+    this.createTodoEmitter.emit(this.todo);
   }
 }

@@ -8,7 +8,7 @@ import { TodoModel } from 'src/app/models/todo.model';
 })
 export class TodoFormComponent {
 
-  public todo: TodoModel;
+  @Input() public todo: TodoModel;
   @Input() public isLoading: boolean;
   @Input() public allowIdInput: boolean;
   @Input() public submitButtonText: string;
@@ -20,8 +20,8 @@ export class TodoFormComponent {
     this.submitButtonText = 'Submit';
   }
 
-  @Output() submitTodoEmitter = new EventEmitter<TodoModel>();
+  @Output() submitTodoEmitter = new EventEmitter<void>();
   public onSubmitTodoClick() {
-    this.submitTodoEmitter.emit(this.todo);
+    this.submitTodoEmitter.emit();
   }
 }

@@ -70,7 +70,7 @@ export class TodosComponent {
       });
   }
 
-  /* Get all todos */
+  /* Get todos */
 
   public onGetAllEvent(): void {
     this.isPerformingRequest = true;
@@ -89,8 +89,6 @@ export class TodosComponent {
         this.isPerformingRequest = false;
       });
   }
-
-  /* Get filtered todos */
 
   public onGetFilteredEvent(userId: number) {
     this.isPerformingRequest = true;
@@ -117,6 +115,28 @@ export class TodosComponent {
     this.activeNavItem = this.updateNavItemId;
   }
 
+  public onUpdateFullTodoEvent(todo: TodoModel) {
+    this.isPerformingRequest = true;
+
+    this.todoService
+      .updateFull(todo)
+      .subscribe(
+        data => {
+          this.todos.forEach(todo => {
+            if (todo.id === data.id) {
+              todo = data;
+            }
+          });
+          alert(`Successfully updated todo with id = ${data.id}`);
+        },
+        error => {
+          alert(`Error updating todo: ${error}`);
+        })
+      .add(() => {
+        this.isPerformingRequest = false;
+      });
+  }
+
   /* View todo */
 
   public onViewSelectedTodoEvent(id: number) {
@@ -127,7 +147,6 @@ export class TodosComponent {
   public onViewTodoEvent(id: number) {
     this.isPerformingRequest = true;
     this.selectedTodo = undefined;
-    this.activeNavItem = this.viewTodoNavItemId;
 
     this.todoService
       .getOne(id)

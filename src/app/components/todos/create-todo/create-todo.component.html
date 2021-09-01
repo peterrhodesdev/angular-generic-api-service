@@ -1,6 +1,7 @@
 <app-todo-form
+  [todo]=todo
   [allowIdInput]=true
   [isLoading]=isLoading
   [submitButtonText]="'Create'"
-  (submitTodoEmitter)=onSubmitTodoEvent($event)
+  (submitTodoEmitter)=onSubmitTodoEvent()
   ></app-todo-form>

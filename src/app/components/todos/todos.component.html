@@ -42,10 +42,14 @@
         ></app-create-todo>
     </ng-template>
   </li>
-  <li [ngbNavItem]="updateNavItemId">
+  <li [ngbNavItem]="updateNavItemId" [disabled]="activeNavItem !== updateNavItemId">
     <a ngbNavLink>Update existing</a>
     <ng-template ngbNavContent>
-      update existing todo
+      <app-update-todo
+        [todo]=selectedTodo!
+        [isLoading]=isPerformingRequest
+        (updateFullTodoEmitter)=onUpdateFullTodoEvent($event)
+        ></app-update-todo>
     </ng-template>
   </li>
 </ul>
