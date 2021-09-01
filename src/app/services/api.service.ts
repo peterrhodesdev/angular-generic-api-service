@@ -82,7 +82,7 @@ export class ApiService {
   private applyPipeOperations(obs: Observable<any>): Observable<any> {
     if (!environment.production) {
       obs = obs.pipe(
-        delay(500), // simulate delay in response
+        //delay(500), // simulate delay in response
         tap(res => console.log('HTTP response:', res)),
       );
     }
