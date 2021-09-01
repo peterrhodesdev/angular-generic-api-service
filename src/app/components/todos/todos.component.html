@@ -2,6 +2,11 @@
 
 <p><i>Note: because this is only a mock server the resources won't actually be modified, just faked as if they were.</i></p>
 
+<ul>
+  <li>Any changes made will be reset when the data is refreshed</li>
+  <li>Creating a new todo will always return an object with id = 201</li>
+</ul>
+
 <ul ngbNav #nav="ngbNav" [(activeId)]="activeNavItem" class="nav-tabs">
   <li [ngbNavItem]="listTodosNavItemId">
     <a ngbNavLink>List todos</a>
