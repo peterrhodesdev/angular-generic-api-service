@@ -49,7 +49,7 @@ export class ApiService {
    *
    * @throws Error From this.convertObjToJsonString
    */
-  public patch<T>(url: string, partialT: Partial<T>): Observable<Partial<T>> {
+  public patch<T>(url: string, partialT: Partial<T>): Observable<Partial<T>> | never {
     let jsonString: string = this.convertObjToJsonString(partialT);
     let obs: Observable<Partial<T>> = this.httpClient.patch<Partial<T>>(url, jsonString, this.httpOptions);
     return this.applyPipeOperations(obs);
@@ -60,7 +60,7 @@ export class ApiService {
    *
    * @throws Error From this.convertObjToJsonString
    */
-  public post<T>(url: string, t: T): Observable<T> {
+  public post<T>(url: string, t: T): Observable<T> | never {
     let jsonString: string = this.convertObjToJsonString(t);
     let obs: Observable<T> = this.httpClient.post<T>(url, jsonString, this.httpOptions);
     return this.applyPipeOperations(obs);
@@ -71,7 +71,7 @@ export class ApiService {
    *
    * @throws Error From this.convertObjToJsonString
    */
-  public put<T>(url: string, t: T): Observable<T> {
+  public put<T>(url: string, t: T): Observable<T> | never {
     let jsonString: string = this.convertObjToJsonString(t);
     let obs: Observable<T> = this.httpClient.put<T>(url, jsonString, this.httpOptions);
     return this.applyPipeOperations(obs);
@@ -95,7 +95,7 @@ export class ApiService {
   /**
    * @throws Error If the obj argument is null or undefined.
    */
-  private convertObjToJsonString(obj: any): string {
+  private convertObjToJsonString(obj: any): string | never {
     if (ValidationHelper.isNullOrUndefined(obj)) {
       throw Error("Illegal Argument Error: can't convert null or undefined objects to JSON string");
     }

@@ -34,7 +34,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
    *
    * @throws Error From this.apiService.post
    */
-  public create(t: T): Observable<T> {
+  public create(t: T): Observable<T> | never {
     return this.apiService.post<T>(this.endpointUrl(), t)
       .pipe(this.pipeOperations);
   }
@@ -71,11 +71,11 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   /**
    * Perform a full update of a model.
    *
-   * @throws Error If the id field of the model is not defined.
+   * @throws Error From this.getModelId
    * @throws Error From this.apiService.put
    */
-  public updateFull(t: T): Observable<T> {
-    let id: ID = this.getModelIdOrThrow(t);
+  public updateFull(t: T): Observable<T> | never {
+    let id: ID = this.getModelId(t);
     return this.apiService.put<T>(this.endpointUrlWithId(id), t)
       .pipe(this.pipeOperations);
   }
@@ -83,11 +83,11 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   /**
    * Perform a partial update of a model.
    *
-   * @throws Error If the id field of the model is not defined.
+   * @throws Error From this.getModelId
    * @throws Error From this.apiService.put
    */
-  public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> {
-    let id: ID = this.getModelIdOrThrow(partialT);
+  public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> | never {
+    let id: ID = this.getModelId(partialT);
     return this.apiService.patch<T>(this.endpointUrlWithId(id), partialT)
       .pipe(this.pipeOperations);
   }
@@ -102,7 +102,10 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
     return `${this.endpointUrl()}${id}`;
   }
 
-  private getModelIdOrThrow(partialT: Partial<T>): ID {
+  /**
+   * @throws Error If the id field of the model is not defined.
+   */
+  private getModelId(partialT: Partial<T>): ID | never {
     if (ValidationHelper.isNullOrUndefined(partialT.id)) {
       throw Error(`Illegal Argument Error: model id must be defined`);
     }

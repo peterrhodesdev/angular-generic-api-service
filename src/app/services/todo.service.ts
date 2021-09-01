@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class TodoService extends BaseApiEndpointService<TodoModel> {
 
+  /* abstract methods from parent */
+
   public getBaseUrl(): string {
     return environment.API_BASE_URL_JSON_PLACEHOLDER;
   }
@@ -21,6 +23,8 @@ export class TodoService extends BaseApiEndpointService<TodoModel> {
   public getInstance(): TodoModel {
     return new TodoModel();
   }
+
+  /* public methods */
 
   public getManyFilterByUserId(userId: number): Observable<TodoModel[]> {
     let param: QueryParameter = new QueryParameter("userId", userId.toString());
