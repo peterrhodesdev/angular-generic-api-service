@@ -31,6 +31,7 @@ export class UsersComponent implements OnInit {
       .subscribe(
         data => {
           this.users = [...data];
+          this.selectedUser = this.users[0];
         },
         error => {
           alert(`Error getting users: ${error}`);
