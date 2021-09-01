@@ -28,9 +28,9 @@ export class ListTodosComponent {
     this.deletedTodoWithId.emit(id);
   }
 
-  @Output() selectedUpdateTodoWithId = new EventEmitter<number>();
+  @Output() updateSelectedTodoWithId = new EventEmitter<number>();
   public onUpdateTodoClick(id: number) {
-    this.selectedUpdateTodoWithId.emit(id);
+    this.updateSelectedTodoWithId.emit(id);
   }
 
   @Output() getAll = new EventEmitter<number>();
@@ -43,8 +43,8 @@ export class ListTodosComponent {
     this.getFilteredWithUserId.emit(this.userIdFilter);
   }
 
-  @Output() viewTodoWithId = new EventEmitter<number>();
+  @Output() viewSelectedTodoWithId = new EventEmitter<number>();
   public onViewTodoClick(id: number) {
-    this.viewTodoWithId.emit(id);
+    this.viewSelectedTodoWithId.emit(id);
   }
 }

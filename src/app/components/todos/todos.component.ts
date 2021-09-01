@@ -13,7 +13,7 @@ export class TodosComponent {
   public todos: TodoModel[];
   public isPerformingRequest: boolean;
   public activeNavItem: number;
-  public viewTodo?: TodoModel;
+  public selectedTodo?: TodoModel;
   public createTodoSuccessSubject: Subject<void>;
 
   public readonly listTodosNavItemId: number = 1;
@@ -25,7 +25,7 @@ export class TodosComponent {
     this.todos = [];
     this.isPerformingRequest = false;
     this.activeNavItem = this.listTodosNavItemId;
-    this.viewTodo = undefined;
+    this.selectedTodo = undefined;
     this.createTodoSuccessSubject = new Subject<void>();
   }
 
@@ -112,22 +112,28 @@ export class TodosComponent {
 
   /* Update existing todo */
 
-  public onSelectUpdateTodoEvent(id: number) {
+  public onUpdateSelectedTodoEvent(id: number) {
+    this.selectedTodo = this.todos.find(todo => todo.id === id);
     this.activeNavItem = this.updateNavItemId;
   }
 
   /* View todo */
 
+  public onViewSelectedTodoEvent(id: number) {
+    this.selectedTodo = this.todos.find(todo => todo.id === id);
+    this.activeNavItem = this.viewTodoNavItemId;
+  }
+
   public onViewTodoEvent(id: number) {
     this.isPerformingRequest = true;
-    this.viewTodo = undefined;
+    this.selectedTodo = undefined;
     this.activeNavItem = this.viewTodoNavItemId;
 
     this.todoService
       .getOne(id)
       .subscribe(
         data => {
-          this.viewTodo = data;
+          this.selectedTodo = data;
         },
         error => {
           alert(`Error getting todo with id ${id}: ${error}`);

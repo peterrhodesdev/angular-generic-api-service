@@ -15,10 +15,10 @@
         [todos]=todos
         [isLoading]=isPerformingRequest
         (deletedTodoWithId)=onDeleteTodoEvent($event)
-        (selectedUpdateTodoWithId)=onSelectUpdateTodoEvent($event)
+        (updateSelectedTodoWithId)=onUpdateSelectedTodoEvent($event)
         (getAll)=onGetAllEvent()
         (getFilteredWithUserId)=onGetFilteredEvent($event)
-        (viewTodoWithId)=onViewTodoEvent($event)
+        (viewSelectedTodoWithId)=onViewSelectedTodoEvent($event)
         ></app-list-todos>
     </ng-template>
   </li>
@@ -26,7 +26,7 @@
     <a ngbNavLink>View todo</a>
     <ng-template ngbNavContent>
       <app-view-todo
-        [todo]=viewTodo
+        [todo]=selectedTodo
         [isLoading]=isPerformingRequest
         (viewTodoWithId)=onViewTodoEvent($event)
         ></app-view-todo>
