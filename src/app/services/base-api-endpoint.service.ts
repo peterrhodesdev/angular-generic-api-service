@@ -69,31 +69,25 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   }
 
   /**
-   * Perform a full update of a model specified by id.
+   * Perform a full update of a model.
    *
-   * @throws Error If the id field of the model is defined and doesn't match the id argument.
+   * @throws Error If the id field of the model is not defined.
    * @throws Error From this.apiService.put
    */
-  public updateFull(id: ID, t: T): Observable<T> {
-    if (!ValidationHelper.isNullOrUndefined(t.id) && t.id! !== id) {
-      throw Error(`Illegal Argument Error: model id ${t.id} doesn't match argument id ${id}`);
-    }
-
+  public updateFull(t: T): Observable<T> {
+    let id: ID = this.getModelIdOrThrow(t);
     return this.apiService.put<T>(this.endpointUrlWithId(id), t)
       .pipe(this.pipeOperations);
   }
 
   /**
-   * Perform a partial update of a model specified by id.
+   * Perform a partial update of a model.
    *
-   * @throws Error TODO
+   * @throws Error If the id field of the model is not defined.
    * @throws Error From this.apiService.put
    */
-  public updatePartial(id: ID, partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> {
-    if (ValidationHelper.isNullOrUndefined(partialT)) {
-      throw Error("Illegal Argument Error: object must be defined");
-    }
-
+  public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> {
+    let id: ID = this.getModelIdOrThrow(partialT);
     return this.apiService.patch<T>(this.endpointUrlWithId(id), partialT)
       .pipe(this.pipeOperations);
   }
@@ -106,5 +100,12 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
 
   private endpointUrlWithId(id: ID): string {
     return `${this.endpointUrl()}${id}`;
+  }
+
+  private getModelIdOrThrow(partialT: Partial<T>): ID {
+    if (ValidationHelper.isNullOrUndefined(partialT.id)) {
+      throw Error(`Illegal Argument Error: model id must be defined`);
+    }
+    return partialT.id!;
   }
 }
