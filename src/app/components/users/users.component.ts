@@ -11,10 +11,12 @@ export class UsersComponent implements OnInit {
 
   public users: UserModel[];
   public isPerformingRequest: boolean;
+  public selectedUser?: UserModel;
 
   constructor(private userService: UserService) {
     this.users = [];
     this.isPerformingRequest = false;
+    this.selectedUser = undefined;
   }
 
   ngOnInit(): void {
@@ -39,6 +41,6 @@ export class UsersComponent implements OnInit {
   }
 
   public onViewUserClick(id: number) {
-    console.log("view user id = ", id);
+    this.selectedUser = this.users.find(user => user.id! === id);
   }
 }
