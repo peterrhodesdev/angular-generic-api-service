@@ -17,6 +17,7 @@ import { ListTodosComponent } from './components/todos/list-todos/list-todos.com
 import { ViewTodoComponent } from './components/todos/view-todo/view-todo.component';
 import { CreateTodoComponent } from './components/todos/create-todo/create-todo.component';
 import { UpdateTodoComponent } from './components/todos/update-todo/update-todo.component';
+import { TodoFormComponent } from './components/todos/todo-form/todo-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateTodoComponent } from './components/todos/update-todo/update-todo.
     ListTodosComponent,
     ViewTodoComponent,
     CreateTodoComponent,
-    UpdateTodoComponent
+    UpdateTodoComponent,
+    TodoFormComponent
   ],
   imports: [
     BrowserModule,

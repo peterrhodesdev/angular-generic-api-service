@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row" *nfIf="allowIdInput">
+    <div class="col-sm-4 p-0">
+      <label for="id">ID</label>
+      <input
+        type="number"
+        class="form-control"
+        id="id"
+        required
+        [(ngModel)]="todo.id"
+        [attr.disabled]="isLoading ? true : null">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 p-0">
+      <label for="userid">User ID</label>
+      <input
+        type="number"
+        class="form-control"
+        id="userid"
+        required
+        [(ngModel)]="todo.userId"
+        [attr.disabled]="isLoading ? true : null">
+    </div>
+  </div>
+  <div class="row">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      required
+      [(ngModel)]="todo.title"
+      [attr.disabled]="isLoading ? true : null">
+  </div>
+  <div class="row">
+    <div class="col-sm-2 p-0">
+      <label for="completed">Completed</label>
+      <input
+        type="checkbox"
+        class="form-control"
+        id="completed"
+        required
+        [(ngModel)]="todo.completed"
+        [attr.disabled]="isLoading ? true : null">
+    </div>
+  </div>
+  <br>
+  <button (click)="onSubmitTodoClick()" class="btn btn-success">{{ submitButtonText }}</button>
+</div>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>

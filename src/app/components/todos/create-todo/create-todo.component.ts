@@ -19,24 +19,24 @@ export class CreateTodoComponent implements OnInit {
     this.isLoading = false;
   }
 
-  ngOnInit(){
+  ngOnInit(): void {
     if (this.createTodoSuccessEvent) {
       this.createTodoSuccessSubscription = this.createTodoSuccessEvent.subscribe(() => this.onCreateTodoSuccessEvent());
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.createTodoSuccessSubscription) {
       this.createTodoSuccessSubscription.unsubscribe();
     }
   }
 
-  onCreateTodoSuccessEvent() {
+  public onCreateTodoSuccessEvent() {
     this.todo = new TodoModel();
   }
 
   @Output() createTodoEmitter = new EventEmitter<TodoModel>();
-  onCreateTodoClick() {
-    this.createTodoEmitter.emit(this.todo);
+  public onSubmitTodoEvent(todo: TodoModel) {
+    this.createTodoEmitter.emit(todo);
   }
 }
