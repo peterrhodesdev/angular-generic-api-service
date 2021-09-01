@@ -26,8 +26,13 @@
     </div>
     <div class="col">
       <h2>User details</h2>
-      <p>Confirm that class-transformer has populated nested objects:</p>
-      <pre><code>{{ selectedUser | json }}</code></pre>
+        <div *ngIf="selectedUser">
+        <p><b>Confirm can call nested class method:</b></p>
+        <p>UserModel.address.geo.toDegreesMinutesSeconds() (lat/lng decimal as degrees, minutes, and seconds):</p>
+        <p>{{ selectedUser!.address.geo.toDegreesMinutesSeconds() }}</p>
+        <p><b>Confirm that class-transformer has populated nested objects:</b></p>
+        <pre><code>{{ selectedUser | json }}</code></pre>
+      </div>
     </div>
   </div>
 </div>
