@@ -27,10 +27,13 @@
     <div class="col">
       <h2>User details</h2>
         <div *ngIf="selectedUser">
-        <p><b>Confirm can call nested class method:</b></p>
+        <p><b>Confirm can call class method</b></p>
+        <p>UserModel.getFirstName() and UserModel.getLastName():</p>
+        <p>First name = {{ selectedUser!.getFirstName() }}, last name = {{ selectedUser!.getLastName() }}</p>
+        <p><b>Confirm can call nested class method</b></p>
         <p>UserModel.address.geo.toDegreesMinutesSeconds() (lat/lng decimal as degrees, minutes, and seconds):</p>
         <p>{{ selectedUser!.address.geo.toDegreesMinutesSeconds() }}</p>
-        <p><b>Confirm that class-transformer has populated nested objects:</b></p>
+        <p><b>Confirm that nested objects have been populated</b></p>
         <pre><code>{{ selectedUser | json }}</code></pre>
       </div>
     </div>

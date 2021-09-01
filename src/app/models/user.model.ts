@@ -13,6 +13,15 @@ export class UserModel extends BaseApiEndpointModel<number> {
 
   @Type(() => CompanyModel)
   company: CompanyModel = new CompanyModel();
+
+  public getFirstName(): string {
+    return this.name.split(' ')[0];
+  }
+
+  public getLastName(): string {
+    let names: string[] = this.name.split(' ');
+    return names[names.length - 1];
+  }
 }
 
 export class AddressModel {
