@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService extends BaseApiEndpointService<number, TodoModel> {
+export class TodoService extends BaseApiEndpointService<TodoModel> {
 
   public getBaseUrl(): string {
     return environment.API_BASE_URL_JSON_PLACEHOLDER;

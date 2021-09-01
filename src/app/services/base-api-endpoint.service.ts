@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
-import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
+import { AtLeastIdAndOneField, BaseApiEndpointModel, ID } from 'src/app/models/base-api-endpoint.model';
 import { plainToClassFromExist } from 'class-transformer';
 import { QueryParameter } from 'src/app/common/query-parameter';
 import { UrlHelper } from 'src/app/helpers/url.helper';
@@ -11,7 +11,7 @@ import { ValidationHelper } from 'src/app/helpers/validation.helper';
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseApiEndpointService<ID extends number | string, T extends BaseApiEndpointModel<ID>> {
+export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>> {
 
   private pipeOperations = pipe(
     map(response => {
@@ -89,7 +89,7 @@ export abstract class BaseApiEndpointService<ID extends number | string, T exten
    * @throws Error TODO
    * @throws Error From this.apiService.put
    */
-  public updatePartial(id: ID, partialT: Partial<T>): Observable<Partial<T>> {
+  public updatePartial(id: ID, partialT: AtLeastIdAndOneField<T>): Observable<Partial<T>> {
     if (ValidationHelper.isNullOrUndefined(partialT)) {
       throw Error("Illegal Argument Error: object must be defined");
     }

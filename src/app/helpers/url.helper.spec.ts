@@ -1,7 +1,7 @@
 import { UrlHelper } from './url.helper';
 import { QueryParameter } from 'src/app/common/query-parameter';
 
-describe('Url.Helper', () => {
+describe('UrlHelper', () => {
 
   it('#isQueryStringValid should return true for unreserved characters', () => {
     // Arrange
