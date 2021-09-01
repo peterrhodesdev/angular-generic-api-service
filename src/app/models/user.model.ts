@@ -1,4 +1,5 @@
 import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
+import { Type } from 'class-transformer';
 
 export class UserModel extends BaseApiEndpointModel<number> {
   name: string = '';
@@ -6,7 +7,11 @@ export class UserModel extends BaseApiEndpointModel<number> {
   email: string = '';
   phone: string = '';
   website: string = '';
+
+  @Type(() => AddressModel)
   address: AddressModel = new AddressModel();
+
+  @Type(() => CompanyModel)
   company: CompanyModel = new CompanyModel();
 }
 
