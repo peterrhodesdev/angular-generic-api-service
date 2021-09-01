@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.service';
 import { TodoModel } from 'src/app/models/todo.model';
 
@@ -13,10 +14,11 @@ export class TodosComponent {
   public isPerformingRequest: boolean;
   public activeNavItem: number;
   public viewTodo?: TodoModel;
+  public createTodoSuccessSubject: Subject<void>;
 
   public readonly listTodosNavItemId: number = 1;
   public readonly viewTodoNavItemId: number = 2;
-  public readonly addNewNavItemId: number = 3;
+  public readonly createNavItemId: number = 3;
   public readonly editExistingNavItemId: number = 4;
 
   constructor(private todoService: TodoService) {
@@ -24,6 +26,28 @@ export class TodosComponent {
     this.isPerformingRequest = false;
     this.activeNavItem = this.listTodosNavItemId;
     this.viewTodo = undefined;
+    this.createTodoSuccessSubject = new Subject<void>();
+  }
+
+  /* Create */
+
+  public onCreateTodoEvent(todo: TodoModel) {
+    this.isPerformingRequest = true;
+
+    this.todoService
+      .create(todo)
+      .subscribe(
+        data => {
+          this.todos.push(data);
+          this.createTodoSuccessSubject.next();
+          alert(`Successfully created todo with id = ${data.id}`);
+        },
+        error => {
+          alert(`Error creating todo: ${error}`);
+        })
+      .add(() => {
+        this.isPerformingRequest = false;
+      });
   }
 
   /* Delete */
@@ -39,7 +63,7 @@ export class TodosComponent {
           alert(`Successfully deleted todo with id = ${id}`);
         },
         error => {
-          alert(`Error deleting todo with id = ${id}`);
+          alert(`Error deleting todo with id = ${id}: ${error}`);
         })
       .add(() => {
         this.isPerformingRequest = false;

@@ -1,0 +1,26 @@
+<div class="submit-form">
+  <div class="form-group">
+    <label for="userid">User ID</label>
+    <input
+      type="number"
+      class="form-control"
+      id="userid"
+      required
+      [(ngModel)]="todo.userId">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      required
+      [(ngModel)]="todo.title">
+    <label for="completed">Completed</label>
+    <input
+      type="checkbox"
+      class="form-control"
+      id="completed"
+      required
+      [(ngModel)]="todo.completed">
+  </div>
+  <button (click)="onCreateTodoClick()" class="btn btn-success">Create</button>
+</div>

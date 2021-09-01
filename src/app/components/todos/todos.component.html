@@ -27,10 +27,13 @@
         ></app-view-todo>
     </ng-template>
   </li>
-  <li [ngbNavItem]="addNewNavItemId">
-    <a ngbNavLink>Add new</a>
+  <li [ngbNavItem]="createNavItemId">
+    <a ngbNavLink>Create new</a>
     <ng-template ngbNavContent>
-      add new todo
+      <app-create-todo
+        (createTodoEmitter)=onCreateTodoEvent($event)
+        [createTodoSuccessEvent]="createTodoSuccessSubject.asObservable()"
+        ></app-create-todo>
     </ng-template>
   </li>
   <li [ngbNavItem]="editExistingNavItemId">
