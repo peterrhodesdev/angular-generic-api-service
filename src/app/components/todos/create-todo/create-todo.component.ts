@@ -12,9 +12,11 @@ export class CreateTodoComponent implements OnInit {
   public todo: TodoModel;
   private createTodoSuccessSubscription?: Subscription;
   @Input() createTodoSuccessEvent?: Observable<void>;
+  @Input() public isLoading: boolean;
 
   constructor() {
     this.todo = new TodoModel();
+    this.isLoading = false;
   }
 
   ngOnInit(){

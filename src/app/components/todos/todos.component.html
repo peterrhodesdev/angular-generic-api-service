@@ -36,6 +36,7 @@
     <a ngbNavLink>Create new</a>
     <ng-template ngbNavContent>
       <app-create-todo
+        [isLoading]=isPerformingRequest
         (createTodoEmitter)=onCreateTodoEvent($event)
         [createTodoSuccessEvent]="createTodoSuccessSubject.asObservable()"
         ></app-create-todo>
