@@ -35,20 +35,24 @@ export class TodosComponent {
   public onCreateTodoEvent(todo: TodoModel) {
     this.isPerformingRequest = true;
 
-    this.todoService
-      .create(todo)
-      .subscribe(
-        data => {
-          this.todos.push(data);
-          this.createTodoSuccessSubject.next();
-          alert(`Successfully created todo with id = ${data.id}`);
-        },
-        error => {
-          alert(`Error creating todo: ${error}`);
-        })
-      .add(() => {
-        this.isPerformingRequest = false;
-      });
+    try {
+      this.todoService
+        .create(todo)
+        .subscribe(
+          data => {
+            this.todos.push(data);
+            this.createTodoSuccessSubject.next();
+            alert(`Successfully created todo with id = ${data.id}`);
+          },
+          error => {
+            alert(`Error creating todo: ${error}`);
+          })
+        .add(() => {
+          this.isPerformingRequest = false;
+        });
+    } catch(error) {
+      alert(`Error trying to create todo: ${error}`);
+    }
   }
 
   /* Delete todo by id */
@@ -119,45 +123,53 @@ export class TodosComponent {
   public onUpdateFullTodoEvent(todo: TodoModel) {
     this.isPerformingRequest = true;
 
-    this.todoService
-      .updateFull(todo)
-      .subscribe(
-        data => {
-          this.todos.forEach(todo => {
-            if (todo.id === data.id) {
-              todo = data;
-            }
-          });
-          alert(`Successfully updated todo with id = ${data.id}`);
-        },
-        error => {
-          alert(`Error updating todo: ${error}`);
-        })
-      .add(() => {
-        this.isPerformingRequest = false;
-      });
+    try {
+      this.todoService
+        .updateFull(todo)
+        .subscribe(
+          data => {
+            this.todos.forEach(todo => {
+              if (todo.id === data.id) {
+                todo = data;
+              }
+            });
+            alert(`Successfully updated todo with id = ${data.id}`);
+          },
+          error => {
+            alert(`Error updating todo: ${error}`);
+          })
+        .add(() => {
+          this.isPerformingRequest = false;
+        });
+    } catch(error) {
+      alert(`Error trying to update todo: ${error}`);
+    }
   }
 
   public onUpdatePartialTodoEvent(partialTodo: AtLeastIdAndOneField<TodoModel>) {
     this.isPerformingRequest = true;
 
-    this.todoService
-      .updatePartial(partialTodo)
-      .subscribe(
-        data => {
-          this.todos.forEach(todo => {
-            if (todo.id === data.id) {
-              todo = data;
-            }
-          });
-          alert(`Successfully updated todo with id = ${data.id}`);
-        },
-        error => {
-          alert(`Error updating todo: ${error}`);
-        })
-      .add(() => {
-        this.isPerformingRequest = false;
-      });
+    try {
+      this.todoService
+        .updatePartial(partialTodo)
+        .subscribe(
+          data => {
+            this.todos.forEach(todo => {
+              if (todo.id === data.id) {
+                todo = data;
+              }
+            });
+            alert(`Successfully updated todo with id = ${data.id}`);
+          },
+          error => {
+            alert(`Error updating todo: ${error}`);
+          })
+        .add(() => {
+          this.isPerformingRequest = false;
+        });
+    } catch(error) {
+      alert(`Error trying to update todo: ${error}`);
+    }
   }
 
   /* View todo */
