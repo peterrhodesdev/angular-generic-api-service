@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { CreateTodoComponent } from './components/todos/create-todo/create-todo.
 import { UpdateTodoComponent } from './components/todos/update-todo/update-todo.component';
 import { TodoFormComponent } from './components/todos/todo-form/todo-form.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,13 @@ import { ModalComponent } from './components/modal/modal.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
