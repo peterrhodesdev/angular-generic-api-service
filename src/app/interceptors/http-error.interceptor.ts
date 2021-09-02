@@ -18,8 +18,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage: string;
-        if(error.error instanceof ErrorEvent) { // client-side error
-          errorMessage = error.error.message;
+        if(error.status === 0) { // client-side or network error
+          errorMessage = this.getClientNetworkErrorMessage(error);
         } else { // server-side error
           errorMessage = this.getServerErrorMessage(error);
         }
@@ -28,10 +28,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     );
   }
 
+  private getClientNetworkErrorMessage(error: HttpErrorResponse): string {
+    if (!navigator.onLine) {
+      return 'No internet connection';
+    }
+    return error.error.message;
+  }
+
   private getServerErrorMessage(error: HttpErrorResponse): string {
     switch (error.status) {
       case 404:
-        return 'Not found';
+        return `Not found: ${error.message}`;
       default:
         return `Error status: ${error.status}, error message: ${error.message}`;
     }
