@@ -19,9 +19,9 @@ export class ModalComponent {
     modalRef.componentInstance.body = body;
 
     modalRef.result.then((res) => {
-      console.log(`Closed with: ${res}`);
+      //console.log(`Closed with: ${res}`);
     }, (res) => {
-      console.log(`Dismissed ${ModalComponent.getDismissReason(res)}`);
+      //console.log(`Dismissed ${ModalComponent.getDismissReason(res)}`);
     });
   }
 

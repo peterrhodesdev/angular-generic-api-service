@@ -17,14 +17,23 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-				let errorMessage = '';
-				if(error.error instanceof ErrorEvent) { // client-side error
-					errorMessage = error.error.message;
-				} else { // server-side error
-					errorMessage = `Error status: ${error.status}, error message: ${error.message}`;
-				}
-				return throwError(errorMessage);
+        let errorMessage: string;
+        if(error.error instanceof ErrorEvent) { // client-side error
+          errorMessage = error.error.message;
+        } else { // server-side error
+          errorMessage = this.getServerErrorMessage(error);
+        }
+        return throwError(errorMessage);
       })
     );
+  }
+
+  private getServerErrorMessage(error: HttpErrorResponse): string {
+    switch (error.status) {
+      case 404:
+        return 'Not found';
+      default:
+        return `Error status: ${error.status}, error message: ${error.message}`;
+    }
   }
 }
