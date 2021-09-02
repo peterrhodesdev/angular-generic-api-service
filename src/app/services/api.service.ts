@@ -88,7 +88,7 @@ export class ApiService {
     }
 
     return obs.pipe(
-      catchError(this.errorHandler)
+      //catchError(this.errorHandler)
     );
   }
 
@@ -100,15 +100,5 @@ export class ApiService {
       throw Error("Illegal Argument Error: can't convert null or undefined objects to JSON string");
     }
     return JSON.stringify(obj);
-  }
-
-  private errorHandler(error: HttpErrorResponse): Observable<any> {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) { // client-side error
-      errorMessage = error.error.message;
-    } else { // server-side error
-      errorMessage = `Error status: ${error.status}, error message: ${error.message}`;
-    }
-    return throwError(errorMessage);
   }
 }
