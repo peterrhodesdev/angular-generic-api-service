@@ -8,15 +8,18 @@ import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-
 })
 export class ModalComponent {
 
-  @Input() title: string = '';
-  @Input() body: string = '';
+  @Input() title: string;
+  @Input() bodyLines: string[];
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) {
+    this.title = '';
+    this.bodyLines = [];
+  }
 
-  public static open(modal: NgbModal, title: string, body: string): void {
+  public static open(modal: NgbModal, title: string, bodyLines: string[]): void {
     const modalRef = modal.open(ModalComponent)
     modalRef.componentInstance.title = title;
-    modalRef.componentInstance.body = body;
+    modalRef.componentInstance.bodyLines = bodyLines;
 
     modalRef.result.then((res) => {
       //console.log(`Closed with: ${res}`);

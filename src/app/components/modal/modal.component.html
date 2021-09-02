@@ -4,8 +4,8 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <p>{{body}}</p>
+<div class="modal-body" *ngFor="let line of bodyLines">
+ <p>{{line}}</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

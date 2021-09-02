@@ -36,7 +36,7 @@ export class TodosComponent {
 
   public onCreateTodoEvent(todo: TodoModel) {
     this.isPerformingRequest = true;
-    let modalTitle: string = "Create todo";
+    let modalTitle: string = 'Create todo';
 
     try {
       this.todoService
@@ -45,16 +45,16 @@ export class TodosComponent {
           data => {
             this.todos.push(data);
             this.createTodoSuccessSubject.next();
-            this.openModal(modalTitle, `Successfully created todo with id = ${data.id}`);
+            this.openModal(modalTitle, [`Successfully created todo with id = ${data.id}`]);
           },
           error => {
-            this.openModal(modalTitle, `Error creating todo: ${error}`);
+            this.openModal(modalTitle, ['Error creating todo.', error]);
           })
         .add(() => {
           this.isPerformingRequest = false;
         });
     } catch(error) {
-      this.openModal(modalTitle, `Error trying to create todo: ${error}`);
+      this.openModal(modalTitle, ['Error trying to create todo.', error]);
     }
   }
 
@@ -62,17 +62,17 @@ export class TodosComponent {
 
   public onDeleteTodoEvent(id: number) {
     this.isPerformingRequest = true;
-    let modalTitle: string = "Delete todo";
+    let modalTitle: string = 'Delete todo';
 
     this.todoService
       .delete(id)
       .subscribe(
         data => {
           this.todos = this.todos.filter(todo => todo.id !== id);
-          this.openModal(modalTitle, `Successfully deleted todo with id = ${id}`);
+          this.openModal(modalTitle, [`Successfully deleted todo with id = ${id}`]);
         },
         error => {
-          this.openModal(modalTitle, `Error deleting todo with id = ${id}: ${error}`);
+          this.openModal(modalTitle, [`Error deleting todo with id = ${id}.`, error]);
         })
       .add(() => {
         this.isPerformingRequest = false;
@@ -93,7 +93,7 @@ export class TodosComponent {
           this.todos = [...data];
         },
         error => {
-          this.openModal(modalTitle, `Error getting todos: ${error}`);
+          this.openModal(modalTitle, ['Error getting todos.', error]);
         })
       .add(() => {
         this.isPerformingRequest = false;
@@ -112,7 +112,7 @@ export class TodosComponent {
           this.todos = [...data];
         },
         error => {
-          this.openModal(modalTitle, `Error getting todos for user ${userId}: ${error}`);
+          this.openModal(modalTitle, [`Error getting todos for user ${userId}.`, error]);
         })
       .add(() => {
         this.isPerformingRequest = false;
@@ -140,16 +140,16 @@ export class TodosComponent {
                 todo = data;
               }
             });
-            this.openModal(modalTitle, `Successfully updated todo with id = ${data.id}`);
+            this.openModal(modalTitle, [`Successfully updated todo with id = ${data.id}`]);
           },
           error => {
-            this.openModal(modalTitle, `Error updating todo: ${error}`);
+            this.openModal(modalTitle, ['Error updating todo.', error]);
           })
         .add(() => {
           this.isPerformingRequest = false;
         });
     } catch(error) {
-      this.openModal(modalTitle, `Error trying to update todo: ${error}`);
+      this.openModal(modalTitle, ['Error trying to update todo.', error]);
     }
   }
 
@@ -167,16 +167,16 @@ export class TodosComponent {
                 todo = data;
               }
             });
-            this.openModal(modalTitle, `Successfully updated todo with id = ${data.id}`);
+            this.openModal(modalTitle, [`Successfully updated todo with id = ${data.id}`]);
           },
           error => {
-            this.openModal(modalTitle, `Error updating todo: ${error}`);
+            this.openModal(modalTitle, ['Error updating todo.', error]);
           })
         .add(() => {
           this.isPerformingRequest = false;
         });
     } catch(error) {
-      this.openModal(modalTitle, `Error trying to update todo: ${error}`);
+      this.openModal(modalTitle, ['Error trying to update todo.', error]);
     }
   }
 
@@ -199,7 +199,7 @@ export class TodosComponent {
           this.selectedTodo = data;
         },
         error => {
-          this.openModal(modalTitle, `Error getting todo with id ${id}: ${error}`);
+          this.openModal(modalTitle, [`Error getting todo with id ${id}.`, error]);
         })
       .add(() => {
         this.isPerformingRequest = false;
@@ -209,7 +209,7 @@ export class TodosComponent {
 
   /* private methods */
 
-  private openModal(title: string, body: string): void {
-    ModalComponent.open(this.modal, title, body);
+  private openModal(title: string, bodyLines: string[]): void {
+    ModalComponent.open(this.modal, title, bodyLines);
   }
 }

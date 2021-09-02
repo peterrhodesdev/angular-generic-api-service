@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
           this.selectedUser = this.users[0];
         },
         error => {
-          ModalComponent.open(this.modal, 'Get all users', `Error getting users: ${error}`);
+          ModalComponent.open(this.modal, 'Get all users', ['Error getting users.', error]);
         })
       .add(() => {
         this.isPerformingRequest = false;
