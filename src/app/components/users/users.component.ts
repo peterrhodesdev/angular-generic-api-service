@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/models/user.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +15,7 @@ export class UsersComponent implements OnInit {
   public isPerformingRequest: boolean;
   public selectedUser?: UserModel;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private modal: NgbModal) {
     this.users = [];
     this.isPerformingRequest = false;
     this.selectedUser = undefined;
@@ -34,7 +36,7 @@ export class UsersComponent implements OnInit {
           this.selectedUser = this.users[0];
         },
         error => {
-          alert(`Error getting users: ${error}`);
+          ModalComponent.open(this.modal, 'Get all users', `Error getting users: ${error}`);
         })
       .add(() => {
         this.isPerformingRequest = false;
