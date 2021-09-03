@@ -20,6 +20,7 @@ import { UpdateTodoComponent } from './components/todos/update-todo/update-todo.
 import { TodoFormComponent } from './components/todos/todo-form/todo-form.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { HttpStatusCodesComponent } from './components/http-status-codes/http-status-codes.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
     CreateTodoComponent,
     UpdateTodoComponent,
     TodoFormComponent,
-    ModalComponent
+    ModalComponent,
+    HttpStatusCodesComponent
   ],
   imports: [
     BrowserModule,
