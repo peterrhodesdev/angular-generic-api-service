@@ -1,3 +1,15 @@
 <h1>HTTP status codes</h1>
 
-
+<div ngbDropdown class="d-inline-block">
+  <button
+    class="btn btn-outline-primary"
+    id="selectStatus"
+    ngbDropdownToggle>
+    {{getStatusCodeDescription(selectedHttpStatusCode)}}</button>
+  <div ngbDropdownMenu aria-labelledby="selectStatus" style="max-height: 50vh; overflow-y: auto;">
+    <button
+      ngbDropdownItem
+      *ngFor="let httpStatusCode of httpStatusCodes"
+      (click)="changeSelectedHttpStatusCode(httpStatusCode)">{{getStatusCodeDescription(httpStatusCode)}}</button>
+  </div>
+</div>
