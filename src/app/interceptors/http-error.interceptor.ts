@@ -2,26 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Observable, of, pipe, throwError } from 'rxjs';
 import { catchError, concatMap, delay, retryWhen } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
   private retryAttempts: number;
   private retryStatusCodes: number[];
-  private retryInitialIntervalMillis: number;
-  private retryExponentialDelayBase: number;
+  private retryInitialIntervalMs: number;
+  private retryExpDelayBase: number;
 
   constructor() {
-    this.retryAttempts = 3;
-    this.retryStatusCodes = [ 
-      HttpStatusCode.NotFound, // 404
-      HttpStatusCode.RequestTimeout, // 408
-      HttpStatusCode.InternalServerError, // 500
-      HttpStatusCode.ServiceUnavailable, // 503
-      HttpStatusCode.GatewayTimeout, // 504
-    ];
-    this.retryInitialIntervalMillis = 1000;
-    this.retryExponentialDelayBase = 1.5;
+    this.retryAttempts = environment.HTTP_ERROR_RETRY_ATTEMPTS;
+    this.retryStatusCodes = environment.HTTP_ERROR_RETRY_STATUS_CODES; 
+    this.retryInitialIntervalMs = environment.HTTP_ERROR_RETRY_INITIAL_INTERVAL_MILLISECONDS;
+    this.retryExpDelayBase = environment.HTTP_ERROR_RETRY_EXPONENTIAL_DELAY_BASE;
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -39,16 +34,16 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       concatMap((error, index) => {
         if (index < this.retryAttempts && this.retryStatusCodes.includes(error.status)) {
           // Retry with delay
-          let delayMillis: number = this.calculateDelayMillis(index);
-          return of(error).pipe(delay(delayMillis));
+          let delayMs: number = this.calculateDelayMs(index);
+          return of(error).pipe(delay(delayMs));
         }
         return throwError(error);
       }),
     );
   }
 
-  private calculateDelayMillis(iteration: number): number {
-    return Math.pow(this.retryExponentialDelayBase, iteration) * this.retryInitialIntervalMillis;
+  private calculateDelayMs(iteration: number): number {
+    return Math.pow(this.retryExpDelayBase, iteration) * this.retryInitialIntervalMs;
   }
 
   /* handle error */
