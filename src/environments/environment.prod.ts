@@ -1,7 +1,7 @@
-import { commonEnv } from "./environment.common";
+import { defaultEnvironment, IEnvironment } from "./environment.default";
 
 const env {
   production: true,
 };
 
-export const environment = { ...commonEnv, ...env };
+export const environment: IEnvironment = { ...defaultEnvironment, ...env };
