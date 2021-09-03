@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, pipe, throwError } from 'rxjs';
-import { catchError, delay, tap } from 'rxjs/operators';
+import { Observable, pipe } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
@@ -86,10 +86,7 @@ export class ApiService {
         tap(res => console.log('HTTP response:', res)),
       );
     }
-
-    return obs.pipe(
-      //catchError(this.errorHandler)
-    );
+    return obs;
   }
 
   /**
