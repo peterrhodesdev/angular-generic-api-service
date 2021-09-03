@@ -18,5 +18,5 @@
 
 <h2>Request details</h2>
 <ul *ngFor="let detail of requestDetails">
-  <li>{{detail}}</li>
+  <li><p *ngFor="let line of detail">{{line}}</p></li>
 </ul>
