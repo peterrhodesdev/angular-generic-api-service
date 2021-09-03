@@ -13,3 +13,10 @@
       (click)="changeSelectedHttpStatusCode(httpStatusCode)">{{getStatusCodeDescription(httpStatusCode)}}</button>
   </div>
 </div>
+
+<button class="btn btn-primary" (click)="performRequest(selectedHttpStatusCode)">Perform request</button>
+
+<h2>Request details</h2>
+<ul *ngFor="let detail of requestDetails">
+  <li>{{detail}}</li>
+</ul>
