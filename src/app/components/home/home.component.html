@@ -1,30 +1,15 @@
 <h1>Angular generic API service</h1>
-<p>Demo of an Angular generic API service that uses the resources from <a href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a></p>
 
-<h2>Todos</h2>
+<p>Angular demo project for a generic API service using <a href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a> and <a href="https://httpstat.us/">httpstat.us</a>.</p>
 
-<p>Examples of HTTP requests for the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos</a> endpoint.</p>
+<h2><a routerLink="/todos">Todos</a></h2>
 
-<ul>
-  <li>
-    List todos:
-    <ul>
-      <li>Get all: perform a HTTP GET request to read all the todos</li>
-      <li>Get filtered: perform a HTTP GET request with a query parameter to read all the todos filtered by user ID</li>
-      <li>Delete: perform a HTTP DELETE request to delete a todo by ID</li>
-    </ul>
-  </li>
-  <li>View todo: perform a HTTP GET request to read a single todo by ID</li>
-  <li>Create new: perform a HTTP POST request to create a new todo</li>
-  <li>
-    Update existing:
-    <ul>
-      <li>Update full: perform a HTTP PUT request to replace the original todo object</li>
-      <li>Update partial: perform a HTTP PATCH request to modify a todo object</li>
-    </ul>
-  </li>
-</ul>
+<p>Examples of how to perform various HTTP request methods (DELETE, GET, PATCH, POST, PUT) for a specific endpoint by extending services/BaseApiEndpointService.</p>
 
-<h2>Users</h2>
+<h2><a routerLink="/users">Users</a></h2>
 
-<p>Demonstrating class-transformer mapping plain javascript objects returned from an API call to an instance of a class. The JSON Placeholder <a href="https://jsonplaceholder.typicode.com/users">users</a> endpoint is used to get the data.</p>
+<p>Demonstrates class-transformer mapping of plain javascript objects returned from an API call to an instance of a class.</p>
+
+<h2><a routerLink="/http-status-codes">HTTP status codes</a></h2>
+
+<p>Exercise custom logic based on the HTTP response status code.</p>
