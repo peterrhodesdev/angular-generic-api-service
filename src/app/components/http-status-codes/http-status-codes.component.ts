@@ -11,7 +11,7 @@ export class HttpStatusCodesComponent {
 
   public httpStatusCodes: number[];
   public selectedHttpStatusCode: number;
-  public requestDetails: string[][];
+  public requestLog: string[][];
   private delayMilliseconds?: number;
 
   constructor(private apiService: ApiService) {
@@ -20,27 +20,27 @@ export class HttpStatusCodesComponent {
       .map(value => value as number)
       .sort((n1,n2) => n1 - n2);
     this.selectedHttpStatusCode = this.httpStatusCodes[0];
-    this.requestDetails = [];
+    this.requestLog = [];
     this.delayMilliseconds = 500;
   }
 
   public performRequest(statusCode: number) {
-    this.requestDetails = [];
+    this.requestLog = [];
     
     let url: string = this.getUrl(statusCode);
-    this.addRequestDetail(['Performing request.', url]);
+    this.addRequestLog(['Performing request.', url]);
 
     this.apiService
       .getOne<any>(url)
       .subscribe(
         data => {
-          this.addRequestDetail(['Received data.']);
+          this.addRequestLog(['Received data.']);
         },
         error => {
-          this.addRequestDetail(['An error was thrown.', error]);
+          this.addRequestLog(['An error was thrown.', error]);
         })
       .add(() => {
-        this.addRequestDetail(['Request finished.']);
+        this.addRequestLog(['Request finished.']);
       });
   }
 
@@ -62,8 +62,8 @@ export class HttpStatusCodesComponent {
     return url;
   }
 
-  private addRequestDetail(detail: string[]) {
-    this.requestDetails.push([this.getCurrentDateTime(), ...detail]);
+  private addRequestLog(detail: string[]) {
+    this.requestLog.push([this.getCurrentDateTime(), ...detail]);
   }
 
   private getCurrentDateTime(): string {
