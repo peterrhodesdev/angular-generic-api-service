@@ -13,6 +13,7 @@ export class HttpStatusCodesComponent {
   public selectedHttpStatusCode: number;
   public requestLog: string[][];
   private delayMilliseconds?: number;
+  public isPerformingRequest: boolean;
 
   constructor(private apiService: ApiService) {
     this.httpStatusCodes = Object.values(StatusCodes)
@@ -22,10 +23,12 @@ export class HttpStatusCodesComponent {
     this.selectedHttpStatusCode = this.httpStatusCodes[0];
     this.requestLog = [];
     this.delayMilliseconds = 500;
+    this.isPerformingRequest = false;
   }
 
   public performRequest(statusCode: number) {
     this.requestLog = [];
+    this.isPerformingRequest = true;
     
     let url: string = this.getUrl(statusCode);
     this.addRequestLog(['Performing request.', url]);
@@ -41,6 +44,7 @@ export class HttpStatusCodesComponent {
         })
       .add(() => {
         this.addRequestLog(['Request finished.']);
+        this.isPerformingRequest = false;
       });
   }
 

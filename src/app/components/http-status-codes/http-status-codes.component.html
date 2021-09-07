@@ -38,6 +38,7 @@
           <li><p *ngFor="let line of log">{{line}}</p></li>
         </ul>
       </ng-template>
+      <div *ngIf="isPerformingRequest"><app-loading-spinner></app-loading-spinner></div>
     </div>
   </div>
 </div>
