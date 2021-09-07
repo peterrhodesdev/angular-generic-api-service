@@ -2,6 +2,12 @@
 
 <p>Select a HTTP status code from the dropdown below. Then click the 'Request' button to perform a request and receive a response with the selected code.</p>
 
+<ul>
+  <li>401, 403: redirect to login page</li>
+  <li>404: custom error message</li>
+  <li>408, 500, 503, 504: retry request</li>
+</ul>
+
 <div class="container">
   <div class="row">
     <div class="col-4">

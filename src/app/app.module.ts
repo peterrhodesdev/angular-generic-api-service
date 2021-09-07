@@ -21,6 +21,7 @@ import { TodoFormComponent } from './components/todos/todo-form/todo-form.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { HttpStatusCodesComponent } from './components/http-status-codes/http-status-codes.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HttpStatusCodesComponent } from './components/http-status-codes/http-st
     UpdateTodoComponent,
     TodoFormComponent,
     ModalComponent,
-    HttpStatusCodesComponent
+    HttpStatusCodesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
