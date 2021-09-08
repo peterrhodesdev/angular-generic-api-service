@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { AtLeastIdAndOneField, BaseApiEndpointModel, ID } from 'src/app/models/base-api-endpoint.model';

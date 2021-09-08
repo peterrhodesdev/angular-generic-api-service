@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoModel } from 'src/app/models/todo.model';
 import { AtLeastIdAndOneField } from 'src/app/models/base-api-endpoint.model';
-import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 @Component({
   selector: 'app-update-todo',
