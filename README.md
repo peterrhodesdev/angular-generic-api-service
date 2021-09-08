@@ -1,6 +1,13 @@
 # Angular generic API service
 
-TODO
+Angular project for a generic API service that uses [class-transformer](https://www.npmjs.com/package/class-transformer).
+
+The dependency packages for the demo components are:
+- [angular-fontawesome](https://www.npmjs.com/package/@fortawesome/angular-fontawesome)
+- [http-status-codes](https://www.npmjs.com/package/http-status-codes)
+- [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap)
+
+Check out [this blog post](https://peterrhodes.dev/blog/post/angular-generic-api-service) for more details.
 
 ## Get the code
 
@@ -63,3 +70,7 @@ Once the project has compiled successfully, open a web browser and navigate to `
 > These two steps can be combined by running `ng serve -o`, which will open the app automatically in your default browser.
 
 To stop the app, go back to the terminal window and press `ctrl + C`.
+
+## Test
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
