@@ -4,6 +4,7 @@
   <div class="row">
     <div class="col">
       <h2>Users list</h2>
+      <p>All users from the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/users">users endpoint</a>.</p>
       <table class="table table-hover">
         <thead>
         <tr>
@@ -26,6 +27,7 @@
     </div>
     <div class="col">
       <h2>User {{ selectedUser ? selectedUser!.id : '' }} details</h2>
+      <p>The response is transformed into an instance of the <a href="https://github.com/peterrhodesdev/angular-generic-api-service/blob/main/src/app/models/user.model.ts">UserModel</a> class.</p>
       <div *ngIf="selectedUser">
         <p><b>Confirm can call class method</b></p>
         <p>UserModel.getFirstName() and UserModel.getLastName():</p>

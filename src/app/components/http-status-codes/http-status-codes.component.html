@@ -1,11 +1,19 @@
 <h1>HTTP status codes</h1>
 
-<p>Select a HTTP status code from the dropdown below. Then click the 'Request' button to perform a request and receive a response with the selected code.</p>
+<p>Select a HTTP status code from the dropdown below. Then click the 'Request' button to perform a request and receive a response from <a href="https://httpstat.us/">httpstat.us</a> with the selected code. Custom logic based on the response code is performed by <a href="https://github.com/peterrhodesdev/angular-generic-api-service/blob/main/src/app/interceptors/http-error.interceptor.ts">HttpErrorInterceptor</a>, e.g.</p>
 
 <ul>
-  <li>401, 403: redirect to login page</li>
-  <li>404: custom error message</li>
-  <li>408, 500, 503, 504: retry request</li>
+  <li>
+    <ng-container *ngFor="let status of [401, 403]; let i = index">
+      <span (click)="changeSelectedHttpStatusCode(status)">{{status}}</span><ng-container *ngIf="i < 1">, </ng-container>
+    </ng-container>: redirect to login page
+  </li>
+  <li><span (click)="changeSelectedHttpStatusCode(404)">404</span>: custom error message</li>
+  <li>
+    <ng-container *ngFor="let status of [408, 503]; let i = index">
+      <span (click)="changeSelectedHttpStatusCode(status)">{{status}}</span><ng-container *ngIf="i < 1">, </ng-container>
+    </ng-container>: retry request (see the failed requests in the console: CTRL + SHIFT + J)
+  </li>
 </ul>
 
 <div class="container">
@@ -26,7 +34,7 @@
       </div>
     </div>
     <div class="col-4">
-      <button class="btn btn-primary" (click)="performRequest(selectedHttpStatusCode)">Request</button>
+      <button class="btn btn-primary" (click)="performRequest(selectedHttpStatusCode)" [disabled]="isPerformingRequest">Request</button>
     </div>
   </div>
   <div class="row mt-3">

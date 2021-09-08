@@ -22,7 +22,7 @@ export const defaultEnvironment = {
   HTTP_ERROR_RETRY_ATTEMPTS: 3,
   HTTP_ERROR_RETRY_STATUS_CODES: [ 
     HttpStatusCode.RequestTimeout, // 408
-    HttpStatusCode.InternalServerError, // 500
+    HttpStatusCode.BadGateway, // 502
     HttpStatusCode.ServiceUnavailable, // 503
     HttpStatusCode.GatewayTimeout, // 504
   ],

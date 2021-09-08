@@ -1,11 +1,8 @@
 <h1>Todos</h1>
 
-<p><i>Note: because this is only a mock server the resources won't actually be modified, just faked as if they were.</i></p>
+<p>Using the <a href="https://github.com/peterrhodesdev/angular-generic-api-service/blob/main/src/app/services/todo.service.ts">TodoService</a> to create, delete, get, and update resources at the JSON Placeholder <a href="https://jsonplaceholder.typicode.com/todos">todos endpoint</a>.</p>
 
-<ul>
-  <li>Any changes made will be reset when the data is refreshed</li>
-  <li>Creating a new todo will always return an object with id = 201</li>
-</ul>
+<p><i>Note, because this is only a mock server the resources won't actually be modified, just faked as if they were. Any changes made will be reset when the data is refreshed. Also, creating a new todo will always return an object with id = 201.</i></p>
 
 <ul ngbNav #nav="ngbNav" [(activeId)]="activeNavItem" class="nav-tabs">
   <li [ngbNavItem]="listTodosNavItemId">
