@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { TodoService } from 'src/app/services/todo.service';
+import { TodosApiEndpointService } from 'src/app/services/todos-api-endpoint.service';
 import { TodoModel } from 'src/app/models/todo.model';
 import { AtLeastIdAndOneField } from 'src/app/models/base-api-endpoint.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,7 @@ export class TodosComponent {
   public readonly createNavItemId: number = 3;
   public readonly updateNavItemId: number = 4;
 
-  constructor(private todoService: TodoService, private modal: NgbModal) {
+  constructor(private todosApiEndpointService: TodosApiEndpointService, private modal: NgbModal) {
     this.todos = [];
     this.isPerformingRequest = false;
     this.activeNavItem = this.listTodosNavItemId;
@@ -39,7 +39,7 @@ export class TodosComponent {
     let modalTitle: string = 'Create todo';
 
     try {
-      this.todoService
+      this.todosApiEndpointService
         .create(todo)
         .subscribe(
           data => {
@@ -64,7 +64,7 @@ export class TodosComponent {
     this.isPerformingRequest = true;
     let modalTitle: string = 'Delete todo';
 
-    this.todoService
+    this.todosApiEndpointService
       .delete(id)
       .subscribe(
         data => {
@@ -86,7 +86,7 @@ export class TodosComponent {
     this.todos = [];
     let modalTitle: string = "Get all todos";
 
-    this.todoService
+    this.todosApiEndpointService
       .getMany()
       .subscribe(
         data => {
@@ -105,7 +105,7 @@ export class TodosComponent {
     this.todos = [];
     let modalTitle: string = "Get filtered todos";
 
-    this.todoService
+    this.todosApiEndpointService
       .getManyFilterByUserId(userId)
       .subscribe(
         data => {
@@ -131,7 +131,7 @@ export class TodosComponent {
     let modalTitle: string = "Update full todo";
 
     try {
-      this.todoService
+      this.todosApiEndpointService
         .updateFull(todo)
         .subscribe(
           data => {
@@ -158,7 +158,7 @@ export class TodosComponent {
     let modalTitle: string = "Update partial todo";
 
     try {
-      this.todoService
+      this.todosApiEndpointService
         .updatePartial(partialTodo)
         .subscribe(
           data => {
@@ -192,7 +192,7 @@ export class TodosComponent {
     this.selectedTodo = undefined;
     let modalTitle: string = "View todo";
 
-    this.todoService
+    this.todosApiEndpointService
       .getOne(id)
       .subscribe(
         data => {

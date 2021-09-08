@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UsersApiEndpointService } from 'src/app/services/users-api-endpoint.service';
 import { UserModel } from 'src/app/models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   public isPerformingRequest: boolean;
   public selectedUser?: UserModel;
 
-  constructor(private userService: UserService, private modal: NgbModal) {
+  constructor(private usersApiEndpointService: UsersApiEndpointService, private modal: NgbModal) {
     this.users = [];
     this.isPerformingRequest = false;
     this.selectedUser = undefined;
@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
   private getAllUsers(): void {
     this.isPerformingRequest = true;
 
-    this.userService
+    this.usersApiEndpointService
       .getMany()
       .subscribe(
         data => {

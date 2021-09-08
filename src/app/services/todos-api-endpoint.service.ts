@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService extends BaseApiEndpointService<TodoModel> {
+export class TodosApiEndpointService extends BaseApiEndpointService<TodoModel> {
 
   /* abstract methods from parent */
 

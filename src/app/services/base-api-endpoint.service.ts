@@ -13,11 +13,9 @@ import { ValidationHelper } from 'src/app/helpers/validation.helper';
 })
 export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>> {
 
-  private pipeOperations = pipe(
-    map(response => {
-      return plainToClassFromExist(this.getInstance(), response);
-    })
-  );
+  private mapResponseToT = map(response => {
+    return plainToClassFromExist(this.getInstance(), response);
+  });
 
   constructor(private apiService: ApiService) { }
 
@@ -36,7 +34,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
    */
   public create(t: T): Observable<T> | never {
     return this.apiService.post<T>(this.endpointUrl(), t)
-      .pipe(this.pipeOperations);
+      .pipe(this.mapResponseToT);
   }
 
   /**
@@ -57,7 +55,8 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
       .pipe(
         map(response => { 
           return response.map(item => plainToClassFromExist(this.getInstance(), item));
-        }));
+        })
+      );
   }
 
   /**
@@ -65,7 +64,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
    */
   public getOne(id: ID): Observable<T> {
     return this.apiService.getOne<T>(this.endpointUrlWithId(id))
-      .pipe(this.pipeOperations);
+      .pipe(this.mapResponseToT);
   }
 
   /**
@@ -77,7 +76,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   public updateFull(t: T): Observable<T> | never {
     let id: ID = this.getModelId(t);
     return this.apiService.put<T>(this.endpointUrlWithId(id), t)
-      .pipe(this.pipeOperations);
+      .pipe(this.mapResponseToT);
   }
 
   /**
@@ -89,7 +88,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   public updatePartial(partialT: AtLeastIdAndOneField<T>): Observable<T> | never {
     let id: ID = this.getModelId(partialT);
     return this.apiService.patch<T>(this.endpointUrlWithId(id), partialT)
-      .pipe(this.pipeOperations);
+      .pipe(this.mapResponseToT);
   }
 
   /* private methods */

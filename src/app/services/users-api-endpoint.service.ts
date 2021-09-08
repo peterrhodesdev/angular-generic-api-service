@@ -6,7 +6,7 @@ import { UserModel } from 'src/app/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseApiEndpointService<UserModel> {
+export class UsersApiEndpointService extends BaseApiEndpointService<UserModel> {
 
   /* abstract methods from parent */
 
