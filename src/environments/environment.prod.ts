@@ -1,6 +1,6 @@
 import { defaultEnvironment, IEnvironment } from "./environment.default";
 
-const env {
+const env = {
   production: true,
 };
 
