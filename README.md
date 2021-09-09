@@ -9,6 +9,8 @@ The dependency packages for the demo components are:
 
 Check out [this blog post](https://peterrhodes.dev/blog/post/angular-generic-api-service) for more details.
 
+[DEMO](https://peterrhodesdev.github.io/angular-generic-api-service/)
+
 ## Get the code
 
 Use one of the methods given below to get the project source code on your local machine.
