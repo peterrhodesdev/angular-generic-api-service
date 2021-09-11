@@ -6,7 +6,6 @@ import { AtLeastIdAndOneField, BaseApiEndpointModel, ID } from 'src/app/models/b
 import { plainToClassFromExist } from 'class-transformer';
 import { QueryParameter } from 'src/app/common/query-parameter';
 import { UrlHelper } from 'src/app/helpers/url.helper';
-import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -105,7 +104,7 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
    * @throws Error If the id field of the model is not defined.
    */
   private getModelId(partialT: Partial<T>): ID | never {
-    if (ValidationHelper.isNullOrUndefined(partialT.id)) {
+    if (partialT.id === null || typeof partialT.id === "undefined") {
       throw Error(`Illegal Argument Error: model id must be defined`);
     }
     return partialT.id!;

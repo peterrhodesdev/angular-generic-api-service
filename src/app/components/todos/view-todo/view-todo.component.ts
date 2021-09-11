@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoModel } from 'src/app/models/todo.model';
-import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 @Component({
   selector: 'app-view-todo',
@@ -20,7 +19,7 @@ export class ViewTodoComponent {
   }
 
   public canViewTodo(): boolean {
-    return !ValidationHelper.isNullOrUndefined(this.todo);
+    return !(this.todo === null || typeof this.todo === "undefined");
   }
 
   @Output() viewTodoWithId = new EventEmitter<number>();

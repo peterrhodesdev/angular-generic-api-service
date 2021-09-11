@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -93,7 +92,7 @@ export class ApiService {
    * @throws Error If the obj argument is null or undefined.
    */
   private convertObjToJsonString(obj: any): string | never {
-    if (ValidationHelper.isNullOrUndefined(obj)) {
+    if (obj === null || typeof obj === "undefined") {
       throw Error("Illegal Argument Error: can't convert null or undefined objects to JSON string");
     }
     return JSON.stringify(obj);
