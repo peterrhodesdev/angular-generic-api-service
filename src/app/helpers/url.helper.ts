@@ -1,4 +1,4 @@
-import { stringify } from 'qs';
+import { stringify as qs_stringify } from 'qs';
 
 export abstract class UrlHelper {
 
@@ -11,7 +11,7 @@ export abstract class UrlHelper {
   }
 
   public static createQueryString(queryObj: any): string {
-    let queryString: string = stringify(queryObj);
+    let queryString: string = qs_stringify(queryObj);
     return queryString !== '' ? '?' + queryString : '';
   }
 }
