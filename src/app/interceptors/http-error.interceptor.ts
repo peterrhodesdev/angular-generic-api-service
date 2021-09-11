@@ -8,17 +8,12 @@ import { Router } from '@angular/router';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  private retryAttempts: number;
-  private retryStatusCodes: number[];
-  private retryInitialIntervalMs: number;
-  private retryExpDelayBase: number;
+  private retryAttempts: number = environment.HTTP_ERROR_RETRY_ATTEMPTS;
+  private retryStatusCodes: number[] = environment.HTTP_ERROR_RETRY_STATUS_CODES;
+  private retryInitialIntervalMs: number = environment.HTTP_ERROR_RETRY_INITIAL_INTERVAL_MILLISECONDS;
+  private retryExpDelayBase: number = environment.HTTP_ERROR_RETRY_EXPONENTIAL_DELAY_BASE;
 
-  constructor(private router: Router) {
-    this.retryAttempts = environment.HTTP_ERROR_RETRY_ATTEMPTS;
-    this.retryStatusCodes = environment.HTTP_ERROR_RETRY_STATUS_CODES; 
-    this.retryInitialIntervalMs = environment.HTTP_ERROR_RETRY_INITIAL_INTERVAL_MILLISECONDS;
-    this.retryExpDelayBase = environment.HTTP_ERROR_RETRY_EXPONENTIAL_DELAY_BASE;
-  }
+  constructor(private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -42,6 +37,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     );
   }
 
+  /**
+   * Calculates the delay required before the request is retried.
+   * The calculation uses a power function (a^b * c) to exponentially increase the length of the delay.
+   * @param {number} retry iteration (starting from zero) used as the exponent in the power function
+   * @return {number} length of time to delay in milliseconds
+   */
   private calculateDelayMs(iteration: number): number {
     return Math.pow(this.retryExpDelayBase, iteration) * this.retryInitialIntervalMs;
   }
@@ -49,29 +50,31 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   /* handle error */
 
   private handleError(error: HttpErrorResponse): Observable<any> {
-    let errorMessage: string | undefined = this.getErrorMessage(error);
+    let errorMessage: string | undefined;
+    if(error.status === 0) { // client-side or network error
+      errorMessage = this.handleClientError(error);
+    } else { // server-side error
+      errorMessage = this.handleServerError(error);
+    }
+
     if (!errorMessage) { // error was handled
       return of(error);
     }
     return throwError(errorMessage);
   }
 
-  private getErrorMessage(error: HttpErrorResponse): string | undefined {
-    if(error.status === 0) { // client-side or network error
-      return this.getClientNetworkErrorMessage(error);
-    } else { // server-side error
-      return this.getServerErrorMessage(error);
-    }
-  }
-
-  private getClientNetworkErrorMessage(error: HttpErrorResponse): string {
+  private handleClientError(error: HttpErrorResponse): string {
     if (!navigator.onLine) {
       return 'No internet connection';
     }
     return error.error.message;
   }
 
-  private getServerErrorMessage(error: HttpErrorResponse): string | undefined {
+  /**
+   * Attempt to handle the server-side error, otherwise create an error message.
+   * @return {string | undefined} a string with the error message, or undefined if the error was handled
+   */
+  private handleServerError(error: HttpErrorResponse): string | undefined {
     let errorMessage: string | undefined;
 
     switch (error.status) {
