@@ -1,5 +1,4 @@
 import { QueryParameter } from 'src/app/common/query-parameter';
-import { ValidationHelper } from 'src/app/helpers/validation.helper';
 
 export abstract class UrlHelper {
 
@@ -13,15 +12,15 @@ export abstract class UrlHelper {
 
   public static getValidQueryString(params: QueryParameter[]): string {
     // Filter out empty names
-    let validParams: QueryParameter[] = params.filter(element => !ValidationHelper.isEmpty(element.name));
-    if (!ValidationHelper.hasElements(validParams)) {
+    let validParams: QueryParameter[] = params.filter(element => element.name !== '');
+    if (validParams.length === 0) {
       return '';
     }
 
     let queryStringElements: string[] = [];
     for (let param of validParams) {
       let element: string = encodeURIComponent(param.name);
-      if (ValidationHelper.hasNonEmptyValue(param.value)) {
+      if (param.value !== null && typeof param.value !== 'undefined' && param.value !== '') {
         element += '=' + encodeURIComponent(param.value!);
       }
       queryStringElements.push(element);
