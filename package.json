@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "@types/qs": "^6.9.7",
     "bootstrap": "^4.5.0",
     "class-transformer": "^0.4.0",
     "core-js": "^3.16.4",
