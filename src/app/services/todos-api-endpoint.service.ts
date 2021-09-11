@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BaseApiEndpointService } from 'src/app/services/base-api-endpoint.service';
 import { TodoModel } from 'src/app/models/todo.model';
-import { QueryParameter } from 'src/app/common/query-parameter';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -27,7 +26,9 @@ export class TodosApiEndpointService extends BaseApiEndpointService<TodoModel> {
   /* public methods */
 
   public getManyFilterByUserId(userId: number): Observable<TodoModel[]> {
-    let param: QueryParameter = new QueryParameter("userId", userId.toString());
-    return this.getMany([ param ]);
+    let queryObj: any = {
+      userId: userId.toString(),
+    };
+    return this.getMany(queryObj);
   }
 }

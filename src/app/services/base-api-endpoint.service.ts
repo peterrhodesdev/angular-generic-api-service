@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { AtLeastIdAndOneField, BaseApiEndpointModel, ID } from 'src/app/models/base-api-endpoint.model';
 import { plainToClassFromExist } from 'class-transformer';
-import { QueryParameter } from 'src/app/common/query-parameter';
 import { UrlHelper } from 'src/app/helpers/url.helper';
 
 @Injectable({
@@ -46,8 +45,8 @@ export abstract class BaseApiEndpointService<T extends BaseApiEndpointModel<ID>>
   /**
    * Get multiple models.
    */
-  public getMany(params: QueryParameter[] = []): Observable<T[]> {
-    let queryString: string = UrlHelper.getValidQueryString(params);
+  public getMany(queryObj: any = {}): Observable<T[]> {
+    let queryString: string = UrlHelper.createQueryString(queryObj);
     let requestUrl: string = this.endpointUrl() + queryString;
 
     return this.apiService.getMany<T>(requestUrl)

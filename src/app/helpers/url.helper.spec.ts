@@ -1,5 +1,4 @@
 import { UrlHelper } from './url.helper';
-import { QueryParameter } from 'src/app/common/query-parameter';
 
 describe('UrlHelper', () => {
 

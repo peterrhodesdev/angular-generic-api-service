@@ -1,4 +1,3 @@
-import { QueryParameter } from 'src/app/common/query-parameter';
 import { stringify } from 'qs';
 
 export abstract class UrlHelper {
@@ -11,29 +10,8 @@ export abstract class UrlHelper {
     return pattern.test(queryString);
   }
 
-  public static getValidQueryString(params: QueryParameter[]): string {
-    // Filter out empty names
-    let validParams: QueryParameter[] = params.filter(element => element.name !== '');
-    if (validParams.length === 0) {
-      return '';
-    }
-
-    let queryObj: any = {};
-    for (let param of validParams) {
-      queryObj[param.name] = param.value;
-    }
-
-    /*
-    let queryStringElements: string[] = [];
-    for (let param of validParams) {
-      let element: string = encodeURIComponent(param.name);
-      if (param.value !== null && typeof param.value !== 'undefined' && param.value !== '') {
-        element += '=' + encodeURIComponent(param.value!);
-      }
-      queryStringElements.push(element);
-    }*/
-
-    let queryString: string = '?' + stringify(queryObj);
-    return UrlHelper.isQueryStringValid(queryString) ? queryString : '';
+  public static createQueryString(queryObj: any): string {
+    let queryString: string = stringify(queryObj);
+    return queryString !== '' ? '?' + queryString : '';
   }
 }
