@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { BaseApiEndpointService } from 'src/app/services/base-api-endpoint.service';
-import { ExampleModel } from 'src/app/models/example.model';
+import { ExampleModel } from 'src/app/examples/example.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExampleApiEndpointService extends BaseApiEndpointService<ExampleModel> {
+export class ExampleService extends BaseApiEndpointService<ExampleModel> {
 
   /* abstract methods from parent */
 

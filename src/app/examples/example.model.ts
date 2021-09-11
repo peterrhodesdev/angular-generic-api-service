@@ -2,13 +2,15 @@ import { BaseApiEndpointModel } from 'src/app/models/base-api-endpoint.model';
 import { Type } from 'class-transformer';
 
 export class ExampleModel extends BaseApiEndpointModel<number> {
-  name: string = '';
+  strProp: string = '';
+  arrProp: string[] = [];
+  optProp?: string = undefined;
 
   @Type(() => NestedObject)
-  nestedObject: NestedObject = new NestedObject();
+  nestedObj: NestedObject = new NestedObject();
 
-  public testMethod(): string {
-    return 'can call this method';
+  public exampleMethod(): string {
+    return 'can call this method after transformation';
   }
 }
 

@@ -22,6 +22,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { HttpStatusCodesComponent } from './components/http-status-codes/http-status-codes.component';
 import { LoginComponent } from './components/login/login.component';
+import { ExampleComponent } from './examples/example.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoginComponent } from './components/login/login.component';
     TodoFormComponent,
     ModalComponent,
     HttpStatusCodesComponent,
-    LoginComponent
+    LoginComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
